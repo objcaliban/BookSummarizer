@@ -10,12 +10,12 @@ import SwiftUI
 // TODO: consider removing useless(?) interface
 protocol PlayItem {
     var name: String { get }
-    var cover: Image { get }
+    var cover: URL? { get }
     var chapters: [Chapter] { get }
 }
 
 struct Book: PlayItem {
     var name: String
-    var cover: Image
+    var cover: URL?
     var chapters: [Chapter]
 }

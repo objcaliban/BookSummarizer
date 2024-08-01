@@ -13,23 +13,32 @@ struct BookSummarizerView: View {
     
     var body: some View {
         VStack {
-            Image("book-cover-mock")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200)
+            AsyncImage(url: store.coverURL /*"https://m.media-amazon.com/images/I/713AIrfxlqL._AC_UF1000,1000_QL80_.jpg"*/) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } else if phase.error != nil {
+                    Text("There was an error loading the image.")
+                } else {
+                    ProgressView()
+                }
+            }
+            .frame(width: 200, height: 200)
+            
             Spacer().frame(height: 50)
             HStack {
                 Image(systemName: "backward.end.fill")
                     .onTapGesture {
-                        store.send(.backwardTapped)
+                        store.send(.view(.backwardTapped))
                     }
                 Image(systemName: store.isAudioPlaying ? "play.fill" : "pause.fill")
                     .onTapGesture {
-                        store.send(store.isAudioPlaying ? .stopTapped : .startTapped)
+                        store.send(.view(store.isAudioPlaying ? .stopTapped : .startTapped))
                     }
                 Image(systemName: "forward.end.fill")
                     .onTapGesture {
-                        store.send(.forwardTapped)
+                        store.send(.view(.forwardTapped))
                     }
             }
             
