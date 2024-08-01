@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7723C0FE2C5BCE0E009A6709 /* BookSummarizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */; };
-		7723C1002C5BCE0E009A6709 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C0FF2C5BCE0E009A6709 /* ContentView.swift */; };
 		7723C1022C5BCE0F009A6709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723C1012C5BCE0F009A6709 /* Assets.xcassets */; };
 		7723C1052C5BCE0F009A6709 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723C1042C5BCE0F009A6709 /* Preview Assets.xcassets */; };
 		7723C10F2C5BCE0F009A6709 /* BookSummarizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C10E2C5BCE0F009A6709 /* BookSummarizerTests.swift */; };
@@ -25,6 +24,7 @@
 		77FB0F732C5C11980052F9BF /* how_to_cook_fish_11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6B2C5C11980052F9BF /* how_to_cook_fish_11.mp3 */; };
 		77FB0F742C5C11980052F9BF /* how_to_cook_fish_05.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6C2C5C11980052F9BF /* how_to_cook_fish_05.mp3 */; };
 		77FB0F752C5C11980052F9BF /* how_to_cook_fish_14.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6D2C5C11980052F9BF /* how_to_cook_fish_14.mp3 */; };
+		77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,6 @@
 /* Begin PBXFileReference section */
 		7723C0FA2C5BCE0E009A6709 /* BookSummarizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSummarizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerApp.swift; sourceTree = "<group>"; };
-		7723C0FF2C5BCE0E009A6709 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7723C1012C5BCE0F009A6709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7723C1042C5BCE0F009A6709 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7723C10A2C5BCE0F009A6709 /* BookSummarizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookSummarizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +64,7 @@
 		77FB0F6B2C5C11980052F9BF /* how_to_cook_fish_11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_11.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_11.mp3; sourceTree = "<group>"; };
 		77FB0F6C2C5C11980052F9BF /* how_to_cook_fish_05.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_05.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_05.mp3; sourceTree = "<group>"; };
 		77FB0F6D2C5C11980052F9BF /* how_to_cook_fish_14.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_14.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_14.mp3; sourceTree = "<group>"; };
+		77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */,
-				7723C0FF2C5BCE0E009A6709 /* ContentView.swift */,
-				7723C12A2C5C078B009A6709 /* BookSummarizerFeature.swift */,
+				77FB0F762C5C17BF0052F9BF /* PlayerScreen */,
 				77FB0F622C5C0A2F0052F9BF /* Resources */,
 				7723C1032C5BCE0F009A6709 /* Preview Content */,
 			);
@@ -173,6 +172,15 @@
 				77FB0F6D2C5C11980052F9BF /* how_to_cook_fish_14.mp3 */,
 			);
 			path = MockDataSource;
+			sourceTree = "<group>";
+		};
+		77FB0F762C5C17BF0052F9BF /* PlayerScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7723C12A2C5C078B009A6709 /* BookSummarizerFeature.swift */,
+				77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */,
+			);
+			path = PlayerScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,7 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7723C1002C5BCE0E009A6709 /* ContentView.swift in Sources */,
+				77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */,
 				7723C12B2C5C078B009A6709 /* BookSummarizerFeature.swift in Sources */,
 				7723C0FE2C5BCE0E009A6709 /* BookSummarizerApp.swift in Sources */,
 			);

@@ -17,6 +17,8 @@ struct BookSummarizerFeature {
     enum Action {
         case startTapped
         case stopTapped
+        case forwardTapped
+        case backwardTapped
     }
     
     var body: some ReducerOf<Self> {
@@ -28,6 +30,12 @@ struct BookSummarizerFeature {
                 
             case .stopTapped:
                 state.isAudioPlaying = false
+                return .none
+                
+            case .forwardTapped:
+                return .none
+                
+            case .backwardTapped:
                 return .none
             }
         }
