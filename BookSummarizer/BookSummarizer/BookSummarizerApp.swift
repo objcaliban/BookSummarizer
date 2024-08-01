@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct BookSummarizerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BookSummarizerView(
+                store: Store(initialState: BookSummarizerFeature.State()) {
+                    BookSummarizerFeature()
+                        ._printChanges()
+                }
+            )
         }
     }
 }

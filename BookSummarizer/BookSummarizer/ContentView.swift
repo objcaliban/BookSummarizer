@@ -6,19 +6,28 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
-struct ContentView: View {
+struct BookSummarizerView: View {
+    let store: StoreOf<BookSummarizerFeature>
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Image(systemName: store.isAudioPlaying ? "play" : "pause")
+                .onTapGesture {
+                    store.isAudioPlaying ? store.send(.stopTapped) : store.send(.startTapped)
+                }
+            Image("book-cover-mock")
+                .resizable()
+                .scaledToFit()
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    BookSummarizerView(
+        store: Store(initialState: BookSummarizerFeature.State()) {
+            BookSummarizerFeature()
+        }
+    )
 }
