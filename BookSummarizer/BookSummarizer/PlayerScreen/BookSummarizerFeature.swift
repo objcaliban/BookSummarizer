@@ -19,8 +19,9 @@ struct BookSummarizerFeature {
     @ObservableState
     struct State {
         var isAudioPlaying = false
-        var coverURL: URL?
-//        var title = ""
+        var coverURL: URL? = URL(string: "https://m.media-amazon.com/images/I/713AIrfxlqL._AC_UF1000,1000_QL80_.jpg") // TODO: remove mock
+        var currentTime: TimeInterval = 0
+        var duration: TimeInterval = 0
     }
     
     enum Action: BookSummarizerAction {
