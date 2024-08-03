@@ -13,7 +13,6 @@
 		7723C10F2C5BCE0F009A6709 /* BookSummarizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C10E2C5BCE0F009A6709 /* BookSummarizerTests.swift */; };
 		7723C1192C5BCE0F009A6709 /* BookSummarizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C1182C5BCE0F009A6709 /* BookSummarizerUITests.swift */; };
 		7723C11B2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C11A2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift */; };
-		7723C1292C5C0699009A6709 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 7723C1282C5C0699009A6709 /* ComposableArchitecture */; };
 		7723C12B2C5C078B009A6709 /* BookSummarizerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C12A2C5C078B009A6709 /* BookSummarizerFeature.swift */; };
 		77FB0F652C5C0A940052F9BF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F642C5C0A940052F9BF /* Colors.xcassets */; };
 		77FB0F6E2C5C11980052F9BF /* how_to_cook_fish_09.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F662C5C11980052F9BF /* how_to_cook_fish_09.mp3 */; };
@@ -30,6 +29,8 @@
 		77FB0F842C5C201E0052F9BF /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F832C5C201E0052F9BF /* Chapter.swift */; };
 		77FB0F872C5C21EA0052F9BF /* SummarizerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F862C5C21EA0052F9BF /* SummarizerDataSource.swift */; };
 		77FB0F892C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F882C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 */; };
+		77FB0F922C5E4DF60052F9BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 77FB0F912C5E4DF60052F9BF /* ComposableArchitecture */; };
+		77FB0F952C5E50620052F9BF /* KeyPointsPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F942C5E50620052F9BF /* KeyPointsPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		77FB0F832C5C201E0052F9BF /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		77FB0F862C5C21EA0052F9BF /* SummarizerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizerDataSource.swift; sourceTree = "<group>"; };
 		77FB0F882C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_01.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_01.mp3; sourceTree = "<group>"; };
+		77FB0F942C5E50620052F9BF /* KeyPointsPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7723C1292C5C0699009A6709 /* ComposableArchitecture in Frameworks */,
+				77FB0F922C5E4DF60052F9BF /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +191,7 @@
 		77FB0F762C5C17BF0052F9BF /* PlayerScreen */ = {
 			isa = PBXGroup;
 			children = (
+				77FB0F932C5E503A0052F9BF /* Views */,
 				7723C12A2C5C078B009A6709 /* BookSummarizerFeature.swift */,
 				77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */,
 			);
@@ -222,6 +225,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		77FB0F932C5E503A0052F9BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				77FB0F942C5E50620052F9BF /* KeyPointsPlayerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,7 +250,7 @@
 			);
 			name = BookSummarizer;
 			packageProductDependencies = (
-				7723C1282C5C0699009A6709 /* ComposableArchitecture */,
+				77FB0F912C5E4DF60052F9BF /* ComposableArchitecture */,
 			);
 			productName = BookSummarizer;
 			productReference = 7723C0FA2C5BCE0E009A6709 /* BookSummarizer.app */;
@@ -314,7 +325,7 @@
 			);
 			mainGroup = 7723C0F12C5BCE0E009A6709;
 			packageReferences = (
-				7723C1272C5C0699009A6709 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				77FB0F902C5E4DF60052F9BF /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 7723C0FB2C5BCE0E009A6709 /* Products */;
 			projectDirPath = "";
@@ -371,6 +382,7 @@
 				77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */,
 				77FB0F802C5C1F200052F9BF /* Book.swift in Sources */,
 				77FB0F7D2C5C1D130052F9BF /* AudioPlayer.swift in Sources */,
+				77FB0F952C5E50620052F9BF /* KeyPointsPlayerView.swift in Sources */,
 				7723C12B2C5C078B009A6709 /* BookSummarizerFeature.swift in Sources */,
 				7723C0FE2C5BCE0E009A6709 /* BookSummarizerApp.swift in Sources */,
 				77FB0F842C5C201E0052F9BF /* Chapter.swift in Sources */,
@@ -706,7 +718,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7723C1272C5C0699009A6709 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		77FB0F902C5E4DF60052F9BF /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
@@ -717,9 +729,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7723C1282C5C0699009A6709 /* ComposableArchitecture */ = {
+		77FB0F912C5E4DF60052F9BF /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7723C1272C5C0699009A6709 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = 77FB0F902C5E4DF60052F9BF /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
