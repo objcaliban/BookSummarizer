@@ -11,30 +11,29 @@ import ComposableArchitecture
 struct BookSummarizerView: View {
     let store: StoreOf<BookSummarizerFeature>
     
+    init(store: StoreOf<BookSummarizerFeature>) {
+        self.store = store
+        
+        // TODO: maybe change color
+        let thumbImage = UIImage(systemName: "circle.fill")
+        UISlider.appearance().setThumbImage(thumbImage, for: .normal)
+    }
+    
     var body: some View {
         VStack {
             cover
                 .padding(.bottom, Const.Cover.bottomPadding)
+                .padding(.top, Const.Cover.topPadding)
             keyPointNumber
                 .padding(.bottom, Const.KeyPointNumber.bottomPadding)
             chapterTitle
+                .padding(.bottom, Const.ChapterTitle.bottomPadding)
             slider
-            HStack {
-                Image(systemName: "backward.end.fill")
-                    .onTapGesture {
-                        store.send(.view(.backwardTapped))
-                    }
-                Image(systemName: store.isAudioPlaying ? "play.fill" : "pause.fill")
-                    .onTapGesture {
-                        store.send(.view(store.isAudioPlaying ? .stopTapped : .startTapped))
-                    }
-                Image(systemName: "forward.end.fill")
-                    .onTapGesture {
-                        store.send(.view(.forwardTapped))
-                    }
-            }
-            
-            
+                .padding(.bottom, Const.Slider.bottomPadding)
+            speedLabel
+                .padding(.bottom, Const.SpeedLabel.bottomPadding)
+            playerControls
+            Spacer()
         }
     }
     
@@ -80,6 +79,7 @@ struct BookSummarizerView: View {
         HStack(spacing: 0) {
             Text("00:00")
                 .frame(width: 60)
+            
             Slider(
                 value: Binding(
                     get: { store.currentTime },
@@ -93,6 +93,65 @@ struct BookSummarizerView: View {
         .font(.footnote)
         .foregroundColor(.gray)
     }
+    
+    var speedLabel: some View {
+        Text("Speed x0") // TODO: Remove mock
+            .font(.footnote)
+            .foregroundColor(.black)
+            .fontWeight(.bold)
+            .padding(10)
+            .background(
+                RoundedRectangle(cornerRadius: 7)
+                    .fill(Color(UIColor.systemGray5)) // TODO: use design color
+            )
+            .onTapGesture {
+                // TODO: add action
+            }
+    }
+    
+    var playerControls: some View {
+        HStack(spacing: 30) {
+            control(image: "backward.end.fill") {
+                store.send(.view(.backwardTapped))
+            }
+            .frame(height: Const.Controls.moveHeight)
+            .foregroundColor(.black) // TODO: move to button style
+            
+            control(image: "gobackward.5") {
+                // TODO: add action
+            }
+            .frame(height: Const.Controls.windHeigt)
+            .foregroundColor(.black) // TODO: move to button style
+            
+            control(image: store.isAudioPlaying ? "play.fill" : "pause.fill") {
+                store.send(.view(store.isAudioPlaying ? .stopTapped : .startTapped))
+            }
+            .frame(width: Const.Controls.playHeight, height: Const.Controls.playHeight)
+            .foregroundColor(.black) // TODO: move to button style
+            
+            control(image: "goforward.10") {
+                // TODO: add action
+            }
+            .frame(height: Const.Controls.windHeigt)
+            .foregroundColor(.black) // TODO: move to button style
+            
+            control(image: "forward.end.fill") {
+                store.send(.view(.forwardTapped))
+            }
+            .frame(height: Const.Controls.moveHeight)
+            .foregroundColor(.black) // TODO: move to button style
+        }
+    }
+    
+    private func control(image: String,
+                         action: @escaping () -> Void) -> some View {
+        Button(action: action, label: {
+            Image(systemName: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            // TODO: add button style for animation
+        })
+    }
 }
 
 extension BookSummarizerView {
@@ -103,10 +162,29 @@ extension BookSummarizerView {
             /// according to designs (real app), the picture should occupy half of the screen horizontally
             static let horizontalPartOfScreen = 0.5
             static let bottomPadding: CGFloat = 40
+            static let topPadding: CGFloat = 30
         }
         
         enum KeyPointNumber {
             static let bottomPadding: CGFloat = 30
+        }
+        
+        enum ChapterTitle {
+            static let bottomPadding: CGFloat = 25
+        }
+        
+        enum Slider {
+            static let bottomPadding: CGFloat = 22
+        }
+        
+        enum SpeedLabel {
+            static let bottomPadding: CGFloat = 55
+        }
+        
+        enum Controls {
+            static let playHeight: CGFloat = 30
+            static let moveHeight: CGFloat = 20
+            static let windHeigt: CGFloat = 30
         }
     }
 }
