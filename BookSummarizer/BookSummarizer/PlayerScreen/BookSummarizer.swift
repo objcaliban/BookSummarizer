@@ -9,12 +9,14 @@ import ComposableArchitecture
 import Foundation
 
 @Reducer
-struct BookSummarizerFeature {
+struct BookSummarizer {
     private protocol BookSummarizerAction {
         associatedtype ViewAction
         
         static func view(_:ViewAction) -> Self
     }
+    
+    @Dependency(\.playItemFetcher) var playItemFetcher
     
     @ObservableState
     struct State {
@@ -26,6 +28,7 @@ struct BookSummarizerFeature {
     
     enum Action: BookSummarizerAction {
         enum ViewAction {
+            case onAppear // TODO: maybe rename
             case startTapped
             case stopTapped
             case forwardTapped
@@ -46,6 +49,12 @@ struct BookSummarizerFeature {
     
     private func handleView(action: Action.ViewAction, with state: inout State) -> Effect<Action> {
         switch action {
+        case .onAppear:
+            return .run { send in
+                /// if this were a real application, here I would be able to make a request to receive the book
+                /// for example, I made a request and received a book
+                await try playItemFetcher.fetchPlayItem()
+            }
         case .startTapped:
             state.isAudioPlaying = true
             return .none

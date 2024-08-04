@@ -13,8 +13,8 @@ struct BookSummarizerApp: App {
     var body: some Scene {
         WindowGroup {
             BookSummarizerView(
-                store: Store(initialState: BookSummarizerFeature.State()) {
-                    BookSummarizerFeature()
+                store: Store(initialState: BookSummarizer.State()) {
+                    BookSummarizer()
                         ._printChanges()
                 }
             )

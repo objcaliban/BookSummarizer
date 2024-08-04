@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct BookSummarizerView: View {
-    let store: StoreOf<BookSummarizerFeature>
+    let store: StoreOf<BookSummarizer>
     
     var body: some View {
         KeyPointsPlayerView(store: store)
@@ -18,8 +18,8 @@ struct BookSummarizerView: View {
 
 #Preview {
     BookSummarizerView(
-        store: Store(initialState: BookSummarizerFeature.State()) {
-            BookSummarizerFeature()
+        store: Store(initialState: BookSummarizer.State()) {
+            BookSummarizer()
         }
     )
 }

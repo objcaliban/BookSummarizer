@@ -9,9 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct KeyPointsPlayerView: View {
-    let store: StoreOf<BookSummarizerFeature>
+    let store: StoreOf<BookSummarizer>
     
-    init(store: StoreOf<BookSummarizerFeature>) {
+    init(store: StoreOf<BookSummarizer>) {
         self.store = store
         
         // TODO: maybe change color
@@ -191,8 +191,8 @@ extension KeyPointsPlayerView {
 
 #Preview {
     KeyPointsPlayerView(
-        store: Store(initialState: BookSummarizerFeature.State()) {
-            BookSummarizerFeature()
+        store: Store(initialState: BookSummarizer.State()) {
+            BookSummarizer()
         }
     )
 }

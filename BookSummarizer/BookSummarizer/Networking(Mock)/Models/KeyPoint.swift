@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Chapter {
+struct KeyPoint: Codable {
     var title: String
     var number: Int
     var text: String
+    var audioURL: String
 }
