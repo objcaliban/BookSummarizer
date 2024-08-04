@@ -82,7 +82,7 @@ struct KeyPointsPlayerView: View {
             Slider(
                 value: Binding(
                     get: { store.player.currentTime },
-                    set: { value in /*store.send(.player(.))*/ }
+                    set: { value in store.send(.player(.setTime(value))) }
                 ),
                 in: 0...store.player.duration
             )
@@ -118,7 +118,7 @@ struct KeyPointsPlayerView: View {
             .foregroundColor(.black) // TODO: move to button style
             
             control(image: "gobackward.5") {
-                // TODO: add action
+                store.send(.view(.fiveSecondsBackwardTapped))
             }
             .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style
@@ -130,7 +130,7 @@ struct KeyPointsPlayerView: View {
             .foregroundColor(.black) // TODO: move to button style
             
             control(image: "goforward.10") {
-                // TODO: add action
+                store.send(.view(.tenSecondsForwardTapped))
             }
             .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style

@@ -47,6 +47,8 @@ struct BookSummarizer {
             case stopTapped
             case forwardTapped
             case backwardTapped
+            case tenSecondsForwardTapped
+            case fiveSecondsBackwardTapped
         }
         
         enum DataSourceAction {
@@ -56,7 +58,9 @@ struct BookSummarizer {
         
         enum PlayerAction {
             case setupPlayer(_ url: URL?)
-//            case setTime(_ time: Double)
+            case setTime(_ time: Double)
+            case moveTenSecondsForward
+            case moveFiveSecondsBackward
         }
         
         enum TimerAction {
@@ -119,6 +123,12 @@ extension BookSummarizer {
             
         case .backwardTapped:
             return .none
+            
+        case .tenSecondsForwardTapped:
+            return .send(.player(.moveTenSecondsForward))
+            
+        case .fiveSecondsBackwardTapped:
+            return .send(.player(.moveFiveSecondsBackward))
         }
     }
 }
@@ -162,7 +172,23 @@ extension BookSummarizer {
             return .run { send in
                 await send(.dataSource(.updateState))
             }
+        case .setTime(let time):
+            setPlayerTime(&state, time: time)
+            return .none
+            
+        case .moveTenSecondsForward:
+            let updatedTime = state.player.currentTime + 10
+            return .send(.player(.setTime(updatedTime <= state.player.duration ? updatedTime : state.player.duration)))
+            
+        case .moveFiveSecondsBackward:
+            let updatedTime = state.player.currentTime - 5
+            return .send(.player(.setTime(updatedTime >= 0 ? updatedTime : 0)))
         }
+    }
+    
+    private func setPlayerTime(_ state: inout State, time: Double) {
+        player.currentTime = time
+        state.player.currentTime = time
     }
     
     private func setupPlayer(_ state: inout State, with url: URL?) {
