@@ -38,7 +38,7 @@ struct KeyPointsPlayerView: View {
     }
     
     var cover: some View {
-        AsyncImage(url: store.cover.coverURL) { phase in
+        AsyncImage(url: URL(string: store.playItem.coverURL)) { phase in
             if let image = phase.image {
                 image
                     .resizable()
@@ -67,7 +67,7 @@ struct KeyPointsPlayerView: View {
     }
     
     var chapterTitle: some View {
-        Text("yfyhdevc uefveufrvcu ufrveouv vtrggertvf trvvtvbgrtrtef tfrgbvgrtfbeerwb gfbrgfbvrfgt gtfrbbtr brt tbrbtrterw tbfve4wetrbv ")
+        Text(store.playItem.keyPointTitle)
             .font(.subheadline)
             .foregroundColor(.black)
             .multilineTextAlignment(.center)

@@ -8,6 +8,10 @@
 import ComposableArchitecture
 import Foundation
 
+/// possible refactoring notes:
+/// - cosider adding subreducers
+///  - chech notes about possibe rename
+///   -
 @Reducer
 struct BookSummarizer {
     @Dependency(\.playItemFetcher) var playItemFetcher
@@ -20,15 +24,16 @@ struct BookSummarizer {
             var duration: TimeInterval = 0
         }
         
-        struct CoverState {
+        struct PlayItemViewState {
             var isErrorAppeared = false
-            var coverURL: URL? = URL(string: "https://m.media-amazon.com/images/I/713AIrfxlqL._AC_UF1000,1000_QL80_.jpg") // TODO: remove mock
+            var coverURL: String = ""
+            var keyPointTitle: String = ""
         }
         
         
         var isLoading = true
         var player = PlayerState()
-        var cover = CoverState()
+        var playItem = PlayItemViewState()
     }
     
     enum Action {
@@ -41,7 +46,12 @@ struct BookSummarizer {
         }
         
         enum NetworkAction {
+            /// network requests
             case requestPlayItem
+            
+            /// response handle
+            case updateWithSuccess(PlayItem) /// possibly rename
+            case updateWithError /// add different errors
         }
         
         case view(ViewAction)
@@ -91,13 +101,23 @@ struct BookSummarizer {
                     /// if this were a real application, here I would be able to make a request to receive the book
                     /// for example, I made a request and received a book
                     let playItem = try await playItemFetcher.fetchPlayItem()
-                    print(playItem)
+                    await send(.network(.updateWithSuccess(playItem)))
                 } catch {
                     print(error.localizedDescription)
+                    await send(.network(.updateWithError))
                 }
             }
+            
+        case .updateWithSuccess(let playItem):
+            state.playItem.coverURL = playItem.cover
+//            state.playItem.keyPointTitle = playItem.keyPoints
+            state.isLoading = false
+            return .none
+            
+        case .updateWithError:
+            state.playItem.isErrorAppeared = true
+            state.isLoading = false
+            return .none
         }
     }
 }
-
-
