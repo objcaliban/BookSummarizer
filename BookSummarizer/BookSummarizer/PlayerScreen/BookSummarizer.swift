@@ -56,7 +56,7 @@ struct BookSummarizer {
         
         enum PlayerAction {
             case setupPlayer(_ url: URL?)
-//            case setTime(_ newTime: Double)
+//            case setTime(_ time: Double)
         }
         
         enum TimerAction {
@@ -88,8 +88,11 @@ struct BookSummarizer {
             }
         }
     }
-    
-        // TODO: maybe add subreducers
+}
+
+// MARK: UI actions
+extension BookSummarizer {
+    // TODO: maybe add subreducers
     private func handleView(action: Action.ViewAction, with state: inout State) -> Effect<Action> {
         switch action {
         case .setupInitiated:
@@ -97,7 +100,7 @@ struct BookSummarizer {
                 await send(.dataSource(.setupDataSource))
             }
         case .startTapped:
-//            set player.playRate
+            //            set player.playRate
             player.play()
             state.player.duration = player.duration
             state.player.isPlaying = true
@@ -118,8 +121,10 @@ struct BookSummarizer {
             return .none
         }
     }
-    
-    // TODO: maybe remove state if not needed
+}
+
+// MARK: DataSource methods
+extension BookSummarizer {
     private func handleDataSource(action: Action.DataSourceAction, with state: inout State) -> Effect<Action> {
         switch action {
         case .setupDataSource:
@@ -134,28 +139,6 @@ struct BookSummarizer {
         }
     }
     
-    private func handlePlayer(action: Action.PlayerAction, with state: inout State) -> Effect<Action> {
-        switch action {
-        case .setupPlayer(let url):
-            setupPlayer(&state, with: url)
-            return .run { send in
-                await send(.dataSource(.updateState))
-            }
-        }
-    }
-    
-    private func handleTimer(action: Action.TimerAction, with state: inout State) -> Effect<Action> {
-        switch action {
-        case .setupTimer:
-            return setupTimer(&state)
-        case .timerTicked:
-            timerTicked(&state)
-            return .none
-        case .cancelTimer:
-            return cancelTimer(&state)
-        }
-    }
-    
     private func update(state: inout State) {
         guard let playItem = dataSource.currentPlayItem,
               let keyPoint = dataSource.currentKeyPoint else {
@@ -167,14 +150,41 @@ struct BookSummarizer {
         state.playItem.keyPointTitle = keyPoint.title
         state.playItem.keyPointNumber = keyPoint.number
         state.playItem.keyPointsCount = playItem.keyPoints.count
-        // TODO Setup player
+    }
+}
+
+// MARK: Player methods
+extension BookSummarizer {
+    private func handlePlayer(action: Action.PlayerAction, with state: inout State) -> Effect<Action> {
+        switch action {
+        case .setupPlayer(let url):
+            setupPlayer(&state, with: url)
+            return .run { send in
+                await send(.dataSource(.updateState))
+            }
+        }
     }
     
     private func setupPlayer(_ state: inout State, with url: URL?) {
         do {
             try player.setup(with: url)
         } catch {
-//            return .send(.playerSetupFailed(error as? AudioPlayerError))
+            //            return .send(.playerSetupFailed(error as? AudioPlayerError))
+        }
+    }
+}
+
+// MARK: Timer methods
+extension BookSummarizer {
+    private func handleTimer(action: Action.TimerAction, with state: inout State) -> Effect<Action> {
+        switch action {
+        case .setupTimer:
+            return setupTimer(&state)
+        case .timerTicked:
+            timerTicked(&state)
+            return .none
+        case .cancelTimer:
+            return cancelTimer(&state)
         }
     }
     
@@ -200,31 +210,5 @@ struct BookSummarizer {
     
     enum CancelID {
         case timer
-    }
-}
-
-extension Double {
-    var timeString: String {
-        let minute = Int(self) / 60
-        let seconds = Int(self) % 60
-        return String(format: "%02d:%02d", minute, seconds)
-    }
-}
-
-enum AudioSpeed: Float, CaseIterable {
-    case half = 0.5
-    case threeQuarters = 0.75
-    case normal = 1
-    case oneQuarter = 1.25
-    case oneHalf = 1.5
-    case oneThreeQuarters = 1.75
-    case double = 2
-    
-    func next() -> Self {
-        guard let idx = AudioSpeed.allCases.firstIndex(of: self) else {
-            return .normal
-        }
-        let nextIdx = idx + 1
-        return AudioSpeed.allCases.indices.contains(nextIdx) ? AudioSpeed.allCases[nextIdx] : .half
     }
 }
