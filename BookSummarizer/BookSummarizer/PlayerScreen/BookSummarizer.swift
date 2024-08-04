@@ -14,7 +14,8 @@ import Foundation
 ///   -
 @Reducer
 struct BookSummarizer {
-    @Dependency(\.playItemFetcher) var playItemFetcher
+    @Dependency(\.summarizerDataSource) var dataSource
+    @Dependency(\.player) var player
     
     @ObservableState
     struct State {
@@ -25,12 +26,13 @@ struct BookSummarizer {
         }
         
         struct PlayItemViewState {
-            var isErrorAppeared = false
             var coverURL: String = ""
             var keyPointTitle: String = ""
+            var keyPointNumber: Int = 0
+            var keyPointsCount: Int = 0
         }
         
-        
+        var isErrorAppeared = false
         var isLoading = true
         var player = PlayerState()
         var playItem = PlayItemViewState()
@@ -45,17 +47,17 @@ struct BookSummarizer {
             case backwardTapped
         }
         
-        enum NetworkAction {
-            /// network requests
-            case requestPlayItem
+        enum DataSourceAction {
+            case setupDataSource
             
-            /// response handle
+            /// data source update handle
+            case updateState
             case updateWithSuccess(PlayItem) /// possibly rename
             case updateWithError /// add different errors
         }
         
         case view(ViewAction)
-        case network(NetworkAction)
+        case dataSource(DataSourceAction)
     }
     
     var body: some ReducerOf<Self> {
@@ -64,8 +66,8 @@ struct BookSummarizer {
             case .view(let action):
                 return handleView(action: action, with: &state)
                 
-            case .network(let action):
-                return handleNetwok(action: action, with: &state)
+            case .dataSource(let action):
+                return handleDataSource(action: action, with: &state)
             }
         }
     }
@@ -75,7 +77,7 @@ struct BookSummarizer {
         switch action {
         case .setupInitiated:
             return .run { send in
-                await send(.network(.requestPlayItem))
+                await send(.dataSource(.setupDataSource))
             }
         case .startTapped:
             state.player.isAudioPlaying = true
@@ -93,20 +95,16 @@ struct BookSummarizer {
     }
     
     // TODO: maybe remove state if not needed
-    private func handleNetwok(action: Action.NetworkAction, with state: inout State) -> Effect<Action> {
+    private func handleDataSource(action: Action.DataSourceAction, with state: inout State) -> Effect<Action> {
         switch action {
-        case .requestPlayItem:
+        case .setupDataSource:
             return .run { send in
-                do {
-                    /// if this were a real application, here I would be able to make a request to receive the book
-                    /// for example, I made a request and received a book
-                    let playItem = try await playItemFetcher.fetchPlayItem()
-                    await send(.network(.updateWithSuccess(playItem)))
-                } catch {
-                    print(error.localizedDescription)
-                    await send(.network(.updateWithError))
-                }
+                await dataSource.setupDataSource()
+                await send(.dataSource(.updateState))
             }
+        case .updateState:
+            update(state: &state)
+            return .none
             
         case .updateWithSuccess(let playItem):
             state.playItem.coverURL = playItem.cover
@@ -115,9 +113,23 @@ struct BookSummarizer {
             return .none
             
         case .updateWithError:
-            state.playItem.isErrorAppeared = true
+            state.isErrorAppeared = true
             state.isLoading = false
             return .none
         }
+    }
+    
+    private func update(state: inout State) {
+        guard let playItem = dataSource.currentPlayItem,
+              let keyPoint = dataSource.currentKeyPoint else {
+            state.isLoading = false
+            state.isErrorAppeared = true
+            return
+        }
+        state.playItem.coverURL = playItem.cover
+        state.playItem.keyPointTitle = keyPoint.title
+        state.playItem.keyPointNumber = keyPoint.number
+        state.playItem.keyPointsCount = playItem.keyPoints.count
+        // TODO Setup player
     }
 }

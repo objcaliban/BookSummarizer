@@ -8,15 +8,31 @@
 import Dependencies
 
 extension DependencyValues {
-  var playItemFetcher: PlayItemFetching {
-    get { self[PlayItemFetchingKey.self] }
-    set { self[PlayItemFetchingKey.self] = newValue }
-  }
-}
-
-private enum PlayItemFetchingKey: DependencyKey {
-    static var liveValue: PlayItemFetching = mock
+    var playItemFetcher: PlayItemFetching {
+        get { self[PlayItemFetchingKey.self] }
+        set { self[PlayItemFetchingKey.self] = newValue }
+    }
     
-    static let mock: PlayItemFetching = JSONKeeper()
+    var summarizerDataSource: SummarizerDataSourceInterface {
+        get { self[SummarizerDataSourceKey.self] }
+        set { self[SummarizerDataSourceKey.self] = newValue }
+    }
+    
+    var player: Player {
+        get { self[AudioPlayerKey.self] }
+        set { self[AudioPlayerKey.self] = newValue }
+    }
+    
+    private enum PlayItemFetchingKey: DependencyKey {
+        static var liveValue: PlayItemFetching = mock
+        static let mock: PlayItemFetching = JSONKeeper()
+    }
+    
+    private enum SummarizerDataSourceKey: DependencyKey {
+        static var liveValue: SummarizerDataSourceInterface = SummarizerDataSource()
+    }
+    
+    private enum AudioPlayerKey: DependencyKey {
+        static var liveValue: Player = AudioPlayer()
+    }
 }
-

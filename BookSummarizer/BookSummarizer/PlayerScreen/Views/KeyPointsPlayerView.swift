@@ -59,7 +59,7 @@ struct KeyPointsPlayerView: View {
     
     var keyPointNumber: some View {
         // TODO: replace mock
-        Text("Key point 0 of 7")
+        Text("Key point \(store.playItem.keyPointNumber) of \(store.playItem.keyPointsCount)")
             .textCase(.uppercase)
             .foregroundColor(.gray) // TODO: maybe use same colors from design
             .font(.footnote)
