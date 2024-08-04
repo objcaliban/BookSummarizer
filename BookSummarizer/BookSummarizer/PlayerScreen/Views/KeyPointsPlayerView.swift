@@ -123,7 +123,7 @@ struct KeyPointsPlayerView: View {
             .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style
             
-            control(image: store.player.isAudioPlaying ? "play.fill" : "pause.fill") {
+            control(image: store.player.isAudioPlaying ? "pause.fill" : "play.fill") {
                 store.send(.view(store.player.isAudioPlaying ? .stopTapped : .startTapped))
             }
             .frame(width: Const.Controls.playHeight, height: Const.Controls.playHeight)

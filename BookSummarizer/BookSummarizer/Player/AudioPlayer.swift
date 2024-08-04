@@ -5,28 +5,15 @@
 //  Created by Yefremova on 01.08.2024.
 //
 
-import AVKit
+import AVFoundation
 
-class AudioPlayer: Player {
-    var isPlaying: Bool {
-        player?.isPlaying ?? false
-    }
+class AudioPlayer: NSObject, Player {
+    private var player: AVPlayer?
     
-    var currentTime: TimeInterval {
-        get { player?.currentTime ?? 0 }
-        set { player?.currentTime = newValue }
+    func setup(with url: URL?) throws {
+        guard let url else { throw NSError() } // TODO: add specific error
+        player = AVPlayer(url: url)
     }
-    
-    var duration: TimeInterval {
-        player?.duration ?? 0
-    }
-    
-    var playSpeed: Float {
-        get { player?.rate ?? 0 }
-        set { player?.rate = newValue }
-    }
-    
-    private var player: AVAudioPlayer?
     
     func play() {
         player?.play()
@@ -35,9 +22,4 @@ class AudioPlayer: Player {
     func pause() {
         player?.pause()
     }
-    
-    func stop() {
-        player?.stop()
-    }
 }
-

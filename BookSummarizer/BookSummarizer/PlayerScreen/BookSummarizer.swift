@@ -54,8 +54,13 @@ struct BookSummarizer {
             case updateState
         }
         
+        enum PlayerAction {
+            case setupPlayer(_ url: URL?)
+        }
+        
         case view(ViewAction)
         case dataSource(DataSourceAction)
+        case player(PlayerAction)
     }
     
     var body: some ReducerOf<Self> {
@@ -66,6 +71,9 @@ struct BookSummarizer {
                 
             case .dataSource(let action):
                 return handleDataSource(action: action, with: &state)
+                
+            case .player(let action):
+                return handlePlayer(action: action, with: &state)
             }
         }
     }
@@ -78,9 +86,11 @@ struct BookSummarizer {
                 await send(.dataSource(.setupDataSource))
             }
         case .startTapped:
+            player.play()
             state.player.isAudioPlaying = true
             return .none
         case .stopTapped:
+            player.pause()
             state.player.isAudioPlaying = false
             return .none
             
@@ -98,11 +108,22 @@ struct BookSummarizer {
         case .setupDataSource:
             return .run { send in
                 await dataSource.setupDataSource()
-                await send(.dataSource(.updateState))
+                let url = URL(string: dataSource.currentKeyPoint?.audioURL ?? "")
+                await send(.player(.setupPlayer(url)))
             }
         case .updateState:
             update(state: &state)
             return .none
+        }
+    }
+    
+    private func handlePlayer(action: Action.PlayerAction, with state: inout State) -> Effect<Action> {
+        switch action {
+        case .setupPlayer(let url):
+            setupPlayer(&state, with: url)
+            return .run { send in
+                await send(.dataSource(.updateState))
+            }
         }
     }
     
@@ -118,5 +139,15 @@ struct BookSummarizer {
         state.playItem.keyPointNumber = keyPoint.number
         state.playItem.keyPointsCount = playItem.keyPoints.count
         // TODO Setup player
+    }
+    
+    private func setupPlayer(_ state: inout State, with url: URL?) {
+        do {
+            try player.setup(with: url)
+//            state.currentTime = player.currentTime
+//            state.totalTime = player.duration
+        } catch {
+//            return .send(.playerSetupFailed(error as? AudioPlayerError))
+        }
     }
 }

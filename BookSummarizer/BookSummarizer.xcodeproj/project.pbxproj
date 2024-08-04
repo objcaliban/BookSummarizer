@@ -19,19 +19,11 @@
 		77275F9E2C5E64630064FFC9 /* JSONKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275F9D2C5E64630064FFC9 /* JSONKeeper.swift */; };
 		77275FA02C5E6B460064FFC9 /* DependencyValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275F9F2C5E6B460064FFC9 /* DependencyValues.swift */; };
 		77FB0F652C5C0A940052F9BF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F642C5C0A940052F9BF /* Colors.xcassets */; };
-		77FB0F6E2C5C11980052F9BF /* how_to_cook_fish_09.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F662C5C11980052F9BF /* how_to_cook_fish_09.mp3 */; };
-		77FB0F6F2C5C11980052F9BF /* how_to_cook_fish_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F672C5C11980052F9BF /* how_to_cook_fish_02.mp3 */; };
-		77FB0F712C5C11980052F9BF /* how_to_cook_fish_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F692C5C11980052F9BF /* how_to_cook_fish_03.mp3 */; };
-		77FB0F722C5C11980052F9BF /* how_to_cook_fish_07.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6A2C5C11980052F9BF /* how_to_cook_fish_07.mp3 */; };
-		77FB0F732C5C11980052F9BF /* how_to_cook_fish_11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6B2C5C11980052F9BF /* how_to_cook_fish_11.mp3 */; };
-		77FB0F742C5C11980052F9BF /* how_to_cook_fish_05.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6C2C5C11980052F9BF /* how_to_cook_fish_05.mp3 */; };
-		77FB0F752C5C11980052F9BF /* how_to_cook_fish_14.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F6D2C5C11980052F9BF /* how_to_cook_fish_14.mp3 */; };
 		77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */; };
 		77FB0F7B2C5C1A620052F9BF /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F7A2C5C1A620052F9BF /* Player.swift */; };
 		77FB0F7D2C5C1D130052F9BF /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F7C2C5C1D130052F9BF /* AudioPlayer.swift */; };
 		77FB0F842C5C201E0052F9BF /* KeyPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F832C5C201E0052F9BF /* KeyPoint.swift */; };
 		77FB0F872C5C21EA0052F9BF /* SummarizerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F862C5C21EA0052F9BF /* SummarizerDataSource.swift */; };
-		77FB0F892C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F882C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 */; };
 		77FB0F922C5E4DF60052F9BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 77FB0F912C5E4DF60052F9BF /* ComposableArchitecture */; };
 		77FB0F952C5E50620052F9BF /* KeyPointsPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F942C5E50620052F9BF /* KeyPointsPlayerView.swift */; };
 /* End PBXBuildFile section */
@@ -69,19 +61,11 @@
 		77275F9D2C5E64630064FFC9 /* JSONKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONKeeper.swift; sourceTree = "<group>"; };
 		77275F9F2C5E6B460064FFC9 /* DependencyValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyValues.swift; sourceTree = "<group>"; };
 		77FB0F642C5C0A940052F9BF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		77FB0F662C5C11980052F9BF /* how_to_cook_fish_09.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_09.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_09.mp3; sourceTree = "<group>"; };
-		77FB0F672C5C11980052F9BF /* how_to_cook_fish_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_02.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_02.mp3; sourceTree = "<group>"; };
-		77FB0F692C5C11980052F9BF /* how_to_cook_fish_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_03.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_03.mp3; sourceTree = "<group>"; };
-		77FB0F6A2C5C11980052F9BF /* how_to_cook_fish_07.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_07.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_07.mp3; sourceTree = "<group>"; };
-		77FB0F6B2C5C11980052F9BF /* how_to_cook_fish_11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_11.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_11.mp3; sourceTree = "<group>"; };
-		77FB0F6C2C5C11980052F9BF /* how_to_cook_fish_05.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_05.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_05.mp3; sourceTree = "<group>"; };
-		77FB0F6D2C5C11980052F9BF /* how_to_cook_fish_14.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_14.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_14.mp3; sourceTree = "<group>"; };
 		77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerView.swift; sourceTree = "<group>"; };
 		77FB0F7A2C5C1A620052F9BF /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		77FB0F7C2C5C1D130052F9BF /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		77FB0F832C5C201E0052F9BF /* KeyPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPoint.swift; sourceTree = "<group>"; };
 		77FB0F862C5C21EA0052F9BF /* SummarizerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizerDataSource.swift; sourceTree = "<group>"; };
-		77FB0F882C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = how_to_cook_fish_01.mp3; path = ../../../../../../Desktop/book/how_to_cook_fish_01.mp3; sourceTree = "<group>"; };
 		77FB0F942C5E50620052F9BF /* KeyPointsPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointsPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,24 +187,8 @@
 			children = (
 				7723C1012C5BCE0F009A6709 /* Assets.xcassets */,
 				77FB0F642C5C0A940052F9BF /* Colors.xcassets */,
-				77FB0F632C5C0A540052F9BF /* MockDataSource */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		77FB0F632C5C0A540052F9BF /* MockDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				77FB0F882C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 */,
-				77FB0F672C5C11980052F9BF /* how_to_cook_fish_02.mp3 */,
-				77FB0F692C5C11980052F9BF /* how_to_cook_fish_03.mp3 */,
-				77FB0F6C2C5C11980052F9BF /* how_to_cook_fish_05.mp3 */,
-				77FB0F6A2C5C11980052F9BF /* how_to_cook_fish_07.mp3 */,
-				77FB0F662C5C11980052F9BF /* how_to_cook_fish_09.mp3 */,
-				77FB0F6B2C5C11980052F9BF /* how_to_cook_fish_11.mp3 */,
-				77FB0F6D2C5C11980052F9BF /* how_to_cook_fish_14.mp3 */,
-			);
-			path = MockDataSource;
 			sourceTree = "<group>";
 		};
 		77FB0F762C5C17BF0052F9BF /* PlayerScreen */ = {
@@ -368,16 +336,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77FB0F722C5C11980052F9BF /* how_to_cook_fish_07.mp3 in Resources */,
-				77FB0F6F2C5C11980052F9BF /* how_to_cook_fish_02.mp3 in Resources */,
 				77FB0F652C5C0A940052F9BF /* Colors.xcassets in Resources */,
-				77FB0F732C5C11980052F9BF /* how_to_cook_fish_11.mp3 in Resources */,
-				77FB0F892C5C2D0B0052F9BF /* how_to_cook_fish_01.mp3 in Resources */,
 				7723C1052C5BCE0F009A6709 /* Preview Assets.xcassets in Resources */,
-				77FB0F742C5C11980052F9BF /* how_to_cook_fish_05.mp3 in Resources */,
-				77FB0F6E2C5C11980052F9BF /* how_to_cook_fish_09.mp3 in Resources */,
-				77FB0F752C5C11980052F9BF /* how_to_cook_fish_14.mp3 in Resources */,
-				77FB0F712C5C11980052F9BF /* how_to_cook_fish_03.mp3 in Resources */,
 				7723C1022C5BCE0F009A6709 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
