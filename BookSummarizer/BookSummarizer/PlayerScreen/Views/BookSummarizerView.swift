@@ -13,6 +13,9 @@ struct BookSummarizerView: View {
     
     var body: some View {
         KeyPointsPlayerView(store: store)
+            .onAppear {
+                store.send(.view(.setupInitiated))
+            }
     }
 }
 

@@ -38,7 +38,7 @@ struct KeyPointsPlayerView: View {
     }
     
     var cover: some View {
-        AsyncImage(url: store.coverURL) { phase in
+        AsyncImage(url: store.cover.coverURL) { phase in
             if let image = phase.image {
                 image
                     .resizable()
@@ -82,10 +82,10 @@ struct KeyPointsPlayerView: View {
             
             Slider(
                 value: Binding(
-                    get: { store.currentTime },
+                    get: { store.player.currentTime },
                     set: { value in }
                 ),
-                in: 0...store.duration
+                in: 0...store.player.duration
             )
             Text("00:00")
                 .frame(width: 60)
@@ -123,8 +123,8 @@ struct KeyPointsPlayerView: View {
             .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style
             
-            control(image: store.isAudioPlaying ? "play.fill" : "pause.fill") {
-                store.send(.view(store.isAudioPlaying ? .stopTapped : .startTapped))
+            control(image: store.player.isAudioPlaying ? "play.fill" : "pause.fill") {
+                store.send(.view(store.player.isAudioPlaying ? .stopTapped : .startTapped))
             }
             .frame(width: Const.Controls.playHeight, height: Const.Controls.playHeight)
             .foregroundColor(.black) // TODO: move to button style
