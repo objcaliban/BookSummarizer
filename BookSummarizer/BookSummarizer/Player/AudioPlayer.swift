@@ -7,7 +7,35 @@
 
 import AVFoundation
 
-class AudioPlayer: NSObject, Player {
+class AudioPlayer: Player {
+    
+    var isPlaying: Bool {
+        return player?.timeControlStatus == .playing
+    }
+    
+    var currentTime: Double {
+        get {
+            return player?.currentTime().seconds ?? 0.0
+        }
+        set {
+            let newTime = CMTime(seconds: newValue, preferredTimescale: 600)
+            player?.seek(to: newTime)
+        }
+    }
+    
+    var duration: Double {
+        return player?.currentItem?.duration.seconds ?? 0.0
+    }
+    
+    var playRate: Float {
+        get {
+            return player?.rate ?? 1.0
+        }
+        set {
+            player?.rate = newValue
+        }
+    }
+    
     private var player: AVPlayer?
     
     func setup(with url: URL?) throws {

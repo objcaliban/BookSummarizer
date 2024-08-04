@@ -8,12 +8,10 @@
 import Foundation
 
 protocol Player {
-//    var isPlaying: Bool { get }
-//    
-//    var currentTime: TimeInterval { get set }
-//    var duration: TimeInterval { get }
-//    
-//    var playSpeed: Float { get set }
+    var isPlaying: Bool { get }
+    var currentTime: Double { get set }
+    var duration: Double { get }
+    var playRate: Float { get set }
     
     func setup(with url: URL?) throws
     func play()

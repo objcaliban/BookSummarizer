@@ -18,7 +18,7 @@ extension DependencyValues {
         set { self[SummarizerDataSourceKey.self] = newValue }
     }
     
-    var player: Player {
+    var player: AudioPlayer {
         get { self[AudioPlayerKey.self] }
         set { self[AudioPlayerKey.self] = newValue }
     }
@@ -33,6 +33,6 @@ extension DependencyValues {
     }
     
     private enum AudioPlayerKey: DependencyKey {
-        static var liveValue: Player = AudioPlayer()
+        static var liveValue: AudioPlayer = AudioPlayer()
     }
 }

@@ -77,17 +77,17 @@ struct KeyPointsPlayerView: View {
     
     var slider: some View {
         HStack(spacing: 0) {
-            Text("00:00")
+            Text(store.player.currentTime.timeString)
                 .frame(width: 60)
-            
             Slider(
                 value: Binding(
                     get: { store.player.currentTime },
-                    set: { value in }
+                    set: { value in /*store.send(.player(.))*/ }
                 ),
                 in: 0...store.player.duration
             )
-            Text("00:00")
+            
+            Text(store.player.duration.timeString)
                 .frame(width: 60)
         }
         .font(.footnote)
@@ -123,8 +123,8 @@ struct KeyPointsPlayerView: View {
             .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style
             
-            control(image: store.player.isAudioPlaying ? "pause.fill" : "play.fill") {
-                store.send(.view(store.player.isAudioPlaying ? .stopTapped : .startTapped))
+            control(image: store.player.isPlaying ? "pause.fill" : "play.fill") {
+                store.send(.view(store.player.isPlaying ? .stopTapped : .startTapped))
             }
             .frame(width: Const.Controls.playHeight, height: Const.Controls.playHeight)
             .foregroundColor(.black) // TODO: move to button style
