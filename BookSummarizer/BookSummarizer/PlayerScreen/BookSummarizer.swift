@@ -52,8 +52,6 @@ struct BookSummarizer {
             
             /// data source update handle
             case updateState
-            case updateWithSuccess(PlayItem) /// possibly rename
-            case updateWithError /// add different errors
         }
         
         case view(ViewAction)
@@ -104,17 +102,6 @@ struct BookSummarizer {
             }
         case .updateState:
             update(state: &state)
-            return .none
-            
-        case .updateWithSuccess(let playItem):
-            state.playItem.coverURL = playItem.cover
-//            state.playItem.keyPointTitle = playItem.keyPoints
-            state.isLoading = false
-            return .none
-            
-        case .updateWithError:
-            state.isErrorAppeared = true
-            state.isLoading = false
             return .none
         }
     }
