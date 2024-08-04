@@ -25,6 +25,8 @@ struct BookSummarizer {
             var currentTime: Double = 0
             var duration: Double = 0
             var playRate: Float = 0
+            var isFirstKeyPoint: Bool = false
+            var isLastKeyPoint: Bool = false
         }
         
         struct PlayItemViewState {
@@ -57,7 +59,7 @@ struct BookSummarizer {
         }
         
         enum PlayerAction {
-            case setupPlayer(_ url: URL?)
+            case setupPlayer
             case setTime(_ time: Double)
             case moveTenSecondsForward
             case moveFiveSecondsBackward
@@ -112,14 +114,18 @@ extension BookSummarizer {
                 await send(.timer(.setupTimer))
             }
         case .stopTapped:
-            player.pause()
-            state.player.isPlaying = false
+            stopPlayer(&state)
             return .run { send in
                 await send(.timer(.cancelTimer))
             }
             
         case .forwardTapped:
-            return .none
+            dataSource.moveToNextKeyPoint()
+            update(state: &state)
+            return .run { send in
+                await send(.timer(.cancelTimer))
+                await send(.player(.setupPlayer))
+            }
             
         case .backwardTapped:
             return .none
@@ -140,8 +146,7 @@ extension BookSummarizer {
         case .setupDataSource:
             return .run { send in
                 await dataSource.setupDataSource()
-                let url = URL(string: dataSource.currentKeyPoint?.audioURL ?? "")
-                await send(.player(.setupPlayer(url)))
+                await send(.player(.setupPlayer))
             }
         case .updateState:
             update(state: &state)
@@ -156,10 +161,16 @@ extension BookSummarizer {
             state.isErrorAppeared = true
             return
         }
+        handleBorderKeyPoints(&state)
         state.playItem.coverURL = playItem.cover
         state.playItem.keyPointTitle = keyPoint.title
         state.playItem.keyPointNumber = keyPoint.number
         state.playItem.keyPointsCount = playItem.keyPoints.count
+    }
+    
+    private func handleBorderKeyPoints(_ state: inout State) {
+        state.player.isFirstKeyPoint = dataSource.isFirstKeyPoint
+        state.player.isLastKeyPoint = dataSource.isLastKeyPoint
     }
 }
 
@@ -167,8 +178,8 @@ extension BookSummarizer {
 extension BookSummarizer {
     private func handlePlayer(action: Action.PlayerAction, with state: inout State) -> Effect<Action> {
         switch action {
-        case .setupPlayer(let url):
-            setupPlayer(&state, with: url)
+        case .setupPlayer:
+            setupPlayer(&state)
             return .run { send in
                 await send(.dataSource(.updateState))
             }
@@ -191,8 +202,20 @@ extension BookSummarizer {
         state.player.currentTime = time
     }
     
-    private func setupPlayer(_ state: inout State, with url: URL?) {
+    private func stopPlayer(_ state: inout State) {
+        player.pause()
+        state.player.isPlaying = false
+    }
+    
+    private func resetPlayer(_ state: inout State) {
+        stopPlayer(&state)
+        state.player.currentTime = 0
+    }
+    
+    private func setupPlayer(_ state: inout State) {
         do {
+            resetPlayer(&state)
+            let url = URL(string: dataSource.currentKeyPoint?.audioURL ?? "")
             try player.setup(with: url)
         } catch {
             //            return .send(.playerSetupFailed(error as? AudioPlayerError))

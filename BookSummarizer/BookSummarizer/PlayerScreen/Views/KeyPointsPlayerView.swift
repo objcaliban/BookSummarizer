@@ -115,7 +115,8 @@ struct KeyPointsPlayerView: View {
                 store.send(.view(.backwardTapped))
             }
             .frame(height: Const.Controls.moveHeight)
-            .foregroundColor(.black) // TODO: move to button style
+            .foregroundColor(store.player.isFirstKeyPoint ? .gray : .black)
+            .disabled(store.player.isFirstKeyPoint)
             
             control(image: "gobackward.5") {
                 store.send(.view(.fiveSecondsBackwardTapped))
@@ -139,7 +140,8 @@ struct KeyPointsPlayerView: View {
                 store.send(.view(.forwardTapped))
             }
             .frame(height: Const.Controls.moveHeight)
-            .foregroundColor(.black) // TODO: move to button style
+            .foregroundColor(store.player.isLastKeyPoint ? .gray : .black)
+            .disabled(store.player.isLastKeyPoint)
         }
     }
     

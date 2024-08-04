@@ -12,18 +12,33 @@ import Foundation
 protocol SummarizerDataSourceInterface {
     var currentPlayItem: PlayItem? { get }
     var currentKeyPoint: KeyPoint? { get }
+    var isFirstKeyPoint: Bool { get }
+    var isLastKeyPoint: Bool { get }
     
     func setupDataSource() async
-    func moveToNextChapter()
-    func moveToPreviousChapter()
+    func moveToNextKeyPoint()
+    func moveToPreviousKeyPoint()
 }
 
 class SummarizerDataSource: SummarizerDataSourceInterface {
     @Dependency(\.playItemFetcher) var playItemFetcher
     
     var currentPlayItem: PlayItem?
-    var currentKeyPoint: KeyPoint?
+    var currentKeyPoint: KeyPoint? { currentPlayItem?.keyPoints[safe: currentKeyPointIdx] }
     var isErrorAccured: Bool = false
+    
+    var isLastKeyPoint: Bool {
+        guard let currentPlayItem,
+              let currentKeyPoint,
+              currentKeyPoint.number != currentPlayItem.keyPoints.count else { return true }
+        return false
+    }
+    
+    var isFirstKeyPoint: Bool {
+        currentKeyPoint?.number == 1
+    }
+    
+    private var currentKeyPointIdx = 0
     
     func setupDataSource() async {
         do {
@@ -33,17 +48,20 @@ class SummarizerDataSource: SummarizerDataSourceInterface {
             print("✅", playItem)
             self.currentPlayItem = playItem
             // TODO: handle current key point
-            self.currentKeyPoint = playItem.keyPoints.first
         } catch {
             self.isErrorAccured = true
         }
     }
     
-    func moveToNextChapter() {
-        
+    func moveToNextKeyPoint() {
+        if !isLastKeyPoint {
+            currentKeyPointIdx += 1
+        }
     }
     
-    func moveToPreviousChapter() {
-        
+    func moveToPreviousKeyPoint() {
+        if !isFirstKeyPoint {
+            currentKeyPointIdx -= 1
+        }
     }
 }
