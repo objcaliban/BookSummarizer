@@ -124,7 +124,6 @@ extension BookSummarizer {
                 await send(.dataSource(.setupDataSource))
             }
         case .startTapped:
-            //            set player.playRate
             return .run { send in
                 await send(.player(.play))
             }
@@ -148,6 +147,7 @@ extension BookSummarizer {
             
         case .speedLabelTapped:
             return .send(.player(.changePlayRate))
+            
         case .tryAgainTapped:
             return .send(.dataSource(.setupDataSource))
         }
@@ -237,7 +237,10 @@ extension BookSummarizer {
         case .handlePlayingFinish:
             stopPlayer(&state)
             return .run { send in
+                await send(.timer(.cancelTimer))
                 await send(.player(.moveForward))
+                await send(.player(.setupPlayer))
+                await send(.player(.play))
             }
         case .updateDuration:
             state.player.duration = player.duration
@@ -248,7 +251,6 @@ extension BookSummarizer {
     private func updatePlayer(_ state: inout State) -> Effect<Action> {
         update(state: &state)
         return .run { send in
-            await dataSource.setupDataSource()
             await send(.player(.setupPlayer))
         }
     }
