@@ -95,7 +95,7 @@ struct KeyPointsPlayerView: View {
     }
     
     var speedLabel: some View {
-        Text("Speed x0") // TODO: Remove mock
+        Text("Speed x\(store.player.playRate.rawValue.formattedString)")
             .font(.footnote)
             .foregroundColor(.black)
             .fontWeight(.bold)
@@ -105,7 +105,7 @@ struct KeyPointsPlayerView: View {
                     .fill(Color(UIColor.systemGray5)) // TODO: use design color
             )
             .onTapGesture {
-                // TODO: add action
+                store.send(.view(.speedLabelTapped))
             }
     }
     

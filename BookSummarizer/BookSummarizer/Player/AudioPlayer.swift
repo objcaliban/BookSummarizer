@@ -27,12 +27,11 @@ class AudioPlayer: Player {
         return player?.currentItem?.duration.seconds ?? 0.0
     }
     
-    var playRate: Float {
-        get {
-            return player?.rate ?? 1.0
-        }
-        set {
-            player?.rate = newValue
+    var playRate: Float = 1.0 {
+        didSet {
+            if isPlaying {
+                player?.rate = playRate
+            }
         }
     }
     
@@ -44,7 +43,7 @@ class AudioPlayer: Player {
     }
     
     func play() {
-        player?.play()
+        player?.rate = playRate
     }
     
     func pause() {

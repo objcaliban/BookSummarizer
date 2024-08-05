@@ -24,7 +24,7 @@ struct BookSummarizer {
             var isPlaying: Bool = false
             var currentTime: Double = 0
             var duration: Double = 0
-            var playRate: Float = 0
+            var playRate: PlayRate = .normal
             var isFirstKeyPoint: Bool = false
             var isLastKeyPoint: Bool = false
         }
@@ -51,6 +51,7 @@ struct BookSummarizer {
             case backwardTapped
             case tenSecondsForwardTapped
             case fiveSecondsBackwardTapped
+            case speedLabelTapped
         }
         
         enum DataSourceAction {
@@ -63,6 +64,9 @@ struct BookSummarizer {
             case setTime(_ time: Double)
             case moveTenSecondsForward
             case moveFiveSecondsBackward
+            case moveForward
+            case moveBackward
+            case changePlayRate
         }
         
         enum TimerAction {
@@ -120,18 +124,19 @@ extension BookSummarizer {
             }
             
         case .forwardTapped:
-            dataSource.moveToNextKeyPoint()
-            return updatePlayer(&state)
+            return .send(.player(.moveForward))
             
         case .backwardTapped:
-            dataSource.moveToPreviousKeyPoint()
-            return updatePlayer(&state)
+            return .send(.player(.moveBackward))
             
         case .tenSecondsForwardTapped:
             return .send(.player(.moveTenSecondsForward))
             
         case .fiveSecondsBackwardTapped:
             return .send(.player(.moveFiveSecondsBackward))
+            
+        case .speedLabelTapped:
+            return .send(.player(.changePlayRate))
         }
     }
 }
@@ -191,6 +196,19 @@ extension BookSummarizer {
         case .moveFiveSecondsBackward:
             let updatedTime = state.player.currentTime - 5
             return .send(.player(.setTime(updatedTime >= 0 ? updatedTime : 0)))
+        
+        case .moveForward:
+            dataSource.moveToNextKeyPoint()
+            return updatePlayer(&state)
+            
+        case .moveBackward:
+            dataSource.moveToPreviousKeyPoint()
+            return updatePlayer(&state)
+            
+        case .changePlayRate:
+            state.player.playRate = state.player.playRate.next()
+            player.playRate = state.player.playRate.rawValue
+            return .none
         }
     }
     
