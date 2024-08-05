@@ -54,18 +54,12 @@ struct KeyPointsPlayerView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                } else if phase.error != nil {
-                    // TODO: add skeleton
-                    
-                    Text("There was an error loading the image.")
-                    
                 }
             }
         }
     }
     
     var keyPointNumber: some View {
-        // TODO: replace mock
         Text("Key point \(store.keyPoints.currentNumber) of \(store.keyPoints.count)")
             .textCase(.uppercase)
             .foregroundColor(.gray) // TODO: maybe use same colors from design
@@ -118,48 +112,44 @@ struct KeyPointsPlayerView: View {
     
     var playerControls: some View {
         HStack(spacing: 30) {
-            control(image: "backward.end.fill") {
+            control(image: "backward.end.fill", height: Const.Controls.moveHeight) {
                 store.send(.view(.backwardTapped))
             }
-            .frame(height: Const.Controls.moveHeight)
             .foregroundColor(store.keyPoints.isFirstKeyPoint ? .disabledControl : .black)
             .disabled(store.keyPoints.isFirstKeyPoint)
             
-            control(image: "gobackward.5") {
+            control(image: "gobackward.5", height: Const.Controls.windHeigt) {
                 store.send(.view(.fiveSecondsBackwardTapped))
             }
-            .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style
             
-            control(image: store.player.isPlaying ? "pause.fill" : "play.fill") {
+            control(image: store.player.isPlaying ? "pause.fill" : "play.fill", height: Const.Controls.playHeight) {
                 store.send(.view(store.player.isPlaying ? .stopTapped : .startTapped))
             }
-            .frame(width: Const.Controls.playHeight, height: Const.Controls.playHeight)
             .foregroundColor(.black) // TODO: move to button style
             
-            control(image: "goforward.10") {
+            control(image: "goforward.10", height: Const.Controls.windHeigt) {
                 store.send(.view(.tenSecondsForwardTapped))
             }
-            .frame(height: Const.Controls.windHeigt)
             .foregroundColor(.black) // TODO: move to button style
             
-            control(image: "forward.end.fill") {
+            control(image: "forward.end.fill", height: Const.Controls.moveHeight) {
                 store.send(.view(.forwardTapped))
             }
-            .frame(height: Const.Controls.moveHeight)
             .foregroundColor(store.keyPoints.isLastKeyPoint ? .disabledControl : .black)
             .disabled(store.keyPoints.isLastKeyPoint)
         }
     }
     
     private func control(image: String,
+                         height: CGFloat,
                          action: @escaping () -> Void) -> some View {
         Button(action: action, label: {
             Image(systemName: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            // TODO: add button style for animation
         })
+        .buttonStyle(PlayerControlButtonStyle(height: height))
     }
 }
 
