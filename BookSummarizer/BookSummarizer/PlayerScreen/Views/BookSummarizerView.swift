@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct BookSummarizerView: View {
     let store: StoreOf<BookSummarizer>
     @State private var showPlayer = true
+    @State private var playerSelectorOffset: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -18,10 +19,11 @@ struct BookSummarizerView: View {
             if showPlayer {
                 KeyPointsPlayerView(store: store)
             } else {
-                KeyPointReaderView(store: store)
+                KeyPointReaderView(store: store, toggleOffset: $playerSelectorOffset)
             }
             playerSelector
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                .offset(y: playerSelectorOffset)
         }
         .onAppear {
             store.send(.view(.setupInitiated))

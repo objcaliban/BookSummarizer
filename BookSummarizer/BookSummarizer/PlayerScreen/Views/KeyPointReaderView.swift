@@ -10,21 +10,44 @@ import ComposableArchitecture
 
 struct KeyPointReaderView: View {
     let store: StoreOf<BookSummarizer>
+    @Binding var toggleOffset: CGFloat
     
-    init(store: StoreOf<BookSummarizer>) {
-        self.store = store
-    }
+    @State private var previousScrollOffset: CGFloat = 0
+    @State private var contentHeight: CGFloat = 0
+    @State private var screenHeight: CGFloat = 0
     
     var body: some View {
         ScrollView {
-            title
-                .padding(Const.titlePadding)
-            text
-                .padding(.horizontal, Const.textPadding)
-            bottomControls
-                .padding(.top, Const.Controls.topPadding)
-                .padding(.bottom, Const.Controls.bottomPadding)
-            
+            VStack(spacing: 0) {
+                title
+                    .padding(Const.titlePadding)
+                text
+                    .padding(.horizontal, Const.textPadding)
+                bottomControls
+                    .padding(.top, Const.Controls.topPadding)
+                    .padding(.bottom, Const.Controls.bottomPadding)
+            }
+            .background(
+               internalContentReader
+            )
+            .onPreferenceChange(ScrollViewOffsetKey.self) { value in
+                calculateTogleOffset(offset: value)
+            }
+            .onPreferenceChange(ScrollViewContentHeightKey.self) { value in
+                contentHeight = value
+            }
+        }
+        .background(
+            scrollContentReader
+        )
+        .onPreferenceChange(ScreenHeightKey.self) { value in
+            screenHeight = value
+        }
+        .coordinateSpace(name: Const.coordinateSpace)
+        .onChange(of: contentHeight) {
+            if contentHeight < screenHeight {
+                toggleOffset = 0
+            }
         }
     }
     
@@ -60,10 +83,41 @@ struct KeyPointReaderView: View {
             }.opacity(store.keyPoints.isLastKeyPoint ? Const.Controls.hidden : Const.Controls.visible)
         }
     }
+    
+    private var internalContentReader: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ScrollViewContentHeightKey.self, value: geometry.size.height)
+                .preference(key: ScrollViewOffsetKey.self,
+                            value: geometry.frame(in: .named(Const.coordinateSpace)).minY)
+        }
+    }
+    
+    private var scrollContentReader: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ScreenHeightKey.self, value: geometry.size.height)
+        }
+    }
+    
+    private func calculateTogleOffset(offset: CGFloat) {
+        let maxOffset = screenHeight - contentHeight
+        let diff = offset - previousScrollOffset
+        if offset < 0 && offset > maxOffset {
+            if diff < 0 {
+                toggleOffset = min(toggleOffset + abs(diff), 100)
+            } else if diff > 0 {
+                toggleOffset = max(toggleOffset - diff, 0)
+            }
+        }
+        previousScrollOffset = offset
+    }
 }
 
 extension KeyPointReaderView {
     enum Const {
+        static let coordinateSpace = "scrollView"
+        
         static let titlePadding: CGFloat = 15
         static let textPadding: CGFloat = 15
         
@@ -79,12 +133,4 @@ extension KeyPointReaderView {
             static let titleMask = "%d of %d"
         }
     }
-}
-
-#Preview {
-    KeyPointReaderView(
-        store: Store(initialState: BookSummarizer.State()) {
-            BookSummarizer()
-        }
-    )
 }
