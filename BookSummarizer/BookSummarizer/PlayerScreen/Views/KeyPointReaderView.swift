@@ -17,9 +17,14 @@ struct KeyPointReaderView: View {
     
     var body: some View {
         ScrollView {
-            title.padding(15)
-            text.padding(.horizontal, 15)
-            bottomControls.padding(.top, 40)
+            title
+                .padding(15)
+            text
+                .padding(.horizontal, 15)
+            bottomControls
+                .padding(.top, 40)
+                .padding(.bottom, 80)
+            
         }
     }
     
