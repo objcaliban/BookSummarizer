@@ -12,7 +12,7 @@ class JSONKeeper: PlayItemFetching {
     
     func fetchPlayItem() async throws -> PlayItem {
         guard let item = JSONKeeper.decodedPlayItem() else {
-            throw NSError() // TODO: make custom error
+            throw SummarizerError.dataCorrupted
         }
         return item
     }

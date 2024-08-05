@@ -39,7 +39,10 @@ struct KeyPointsPlayerView: View {
                     .padding(.bottom, Const.SpeedLabel.bottomPadding)
                 playerControls
                 Spacer()
-            }
+            }.alert(isPresented: Binding(
+                get: { store.error != nil },
+                set: { value in store.send(.view(.tryAgainTapped))}
+            ), error: store.error, actions: {})
         }
     }
     

@@ -14,6 +14,7 @@ protocol SummarizerDataSourceInterface {
     var currentKeyPoint: KeyPoint? { get }
     var isFirstKeyPoint: Bool { get }
     var isLastKeyPoint: Bool { get }
+    var accuredError: Error? { get }
     
     func setupDataSource() async
     func moveToNextKeyPoint()
@@ -25,7 +26,7 @@ class SummarizerDataSource: SummarizerDataSourceInterface {
     
     var currentPlayItem: PlayItem?
     var currentKeyPoint: KeyPoint? { currentPlayItem?.keyPoints[safe: currentKeyPointIdx] }
-    var isErrorAccured: Bool = false
+    var accuredError: Error?
     
     var isLastKeyPoint: Bool {
         guard let currentPlayItem,
@@ -45,11 +46,10 @@ class SummarizerDataSource: SummarizerDataSourceInterface {
             /// if this were a real application, here I would be able to make a request to receive the book
             /// for example, I made a request and received a book
             let playItem = try await self.playItemFetcher.fetchPlayItem()
-            print("✅", playItem)
             self.currentPlayItem = playItem
             // TODO: handle current key point
         } catch {
-            self.isErrorAccured = true
+            accuredError = error
         }
     }
     

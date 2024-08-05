@@ -44,7 +44,8 @@ class AudioPlayer: Player {
     private var cancellables = Set<AnyCancellable>()
     
     func setup(with url: URL?) throws {
-        guard let url else { throw NSError() } // TODO: add specific error
+        guard let url else { throw SummarizerError.invalidUrl }
+        /// in a real project, I would add a more extensive error handle, for which it takes more time
         player = AVPlayer(url: url)
         setupObservers()
     }

@@ -7,7 +7,6 @@
 
 import ComposableArchitecture
 import Foundation
-//import Combine
 
 /// possible refactoring notes:
 /// - cosider adding subreducers
@@ -46,6 +45,7 @@ struct BookSummarizer {
         }
         
         var isErrorAppeared = false
+        var error: SummarizerError?
         var isLoading = true
         var player = PlayerState()
         var playItem = PlayItemViewState()
@@ -63,6 +63,7 @@ struct BookSummarizer {
             case tenSecondsForwardTapped
             case fiveSecondsBackwardTapped
             case speedLabelTapped
+            case tryAgainTapped
         }
         
         enum DataSourceAction {
@@ -148,6 +149,8 @@ extension BookSummarizer {
             
         case .speedLabelTapped:
             return .send(.player(.changePlayRate))
+        case .tryAgainTapped:
+            return .send(.dataSource(.setupDataSource))
         }
     }
 }
@@ -172,6 +175,7 @@ extension BookSummarizer {
               let keyPoint = dataSource.currentKeyPoint else {
             state.isLoading = false
             state.isErrorAppeared = true
+            state.error = LocalizedErrorAdapter.shared.adapt(error: dataSource.accuredError)
             return
         }
         handleBorderKeyPoints(&state)
@@ -272,7 +276,8 @@ extension BookSummarizer {
             let url = URL(string: dataSource.currentKeyPoint?.audioURL ?? "")
             try player.setup(with: url)
         } catch {
-            //            return .send(.playerSetupFailed(error as? AudioPlayerError))
+            state.isErrorAppeared = true
+            state.error = LocalizedErrorAdapter.shared.adapt(error: error)
         }
     }
 }

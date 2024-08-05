@@ -26,6 +26,8 @@
 		77275FAD2C60E3C60064FFC9 /* DirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FAC2C60E3C60064FFC9 /* DirectionButton.swift */; };
 		77275FB02C6125010064FFC9 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FAF2C6125010064FFC9 /* SkeletonView.swift */; };
 		77275FB52C61336E0064FFC9 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 77275FB42C61336E0064FFC9 /* ComposableArchitecture */; };
+		77275FB92C6152380064FFC9 /* SummarizerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FB82C6152380064FFC9 /* SummarizerError.swift */; };
+		77275FBC2C6155180064FFC9 /* LocalizedErrorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FBB2C6155180064FFC9 /* LocalizedErrorAdapter.swift */; };
 		77FB0F652C5C0A940052F9BF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F642C5C0A940052F9BF /* Colors.xcassets */; };
 		77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */; };
 		77FB0F7B2C5C1A620052F9BF /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F7A2C5C1A620052F9BF /* Player.swift */; };
@@ -74,6 +76,8 @@
 		77275FAA2C60D3620064FFC9 /* KeyPointReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPointReaderView.swift; sourceTree = "<group>"; };
 		77275FAC2C60E3C60064FFC9 /* DirectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButton.swift; sourceTree = "<group>"; };
 		77275FAF2C6125010064FFC9 /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
+		77275FB82C6152380064FFC9 /* SummarizerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizerError.swift; sourceTree = "<group>"; };
+		77275FBB2C6155180064FFC9 /* LocalizedErrorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedErrorAdapter.swift; sourceTree = "<group>"; };
 		77FB0F642C5C0A940052F9BF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerView.swift; sourceTree = "<group>"; };
 		77FB0F7A2C5C1A620052F9BF /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		7723C0FC2C5BCE0E009A6709 /* BookSummarizer */ = {
 			isa = PBXGroup;
 			children = (
+				77275FBA2C6154EE0064FFC9 /* ErrorHandling */,
 				7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */,
 				77275F972C5E61AC0064FFC9 /* Networking(Mock) */,
 				77FB0F7E2C5C1ECC0052F9BF /* DataSource */,
@@ -206,6 +211,15 @@
 				77275FAF2C6125010064FFC9 /* SkeletonView.swift */,
 			);
 			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		77275FBA2C6154EE0064FFC9 /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				77275FB82C6152380064FFC9 /* SummarizerError.swift */,
+				77275FBB2C6155180064FFC9 /* LocalizedErrorAdapter.swift */,
+			);
+			path = ErrorHandling;
 			sourceTree = "<group>";
 		};
 		77FB0F622C5C0A2F0052F9BF /* Resources */ = {
@@ -396,8 +410,10 @@
 				77FB0F7B2C5C1A620052F9BF /* Player.swift in Sources */,
 				77275F9E2C5E64630064FFC9 /* JSONKeeper.swift in Sources */,
 				77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */,
+				77275FB92C6152380064FFC9 /* SummarizerError.swift in Sources */,
 				77275FB02C6125010064FFC9 /* SkeletonView.swift in Sources */,
 				77275FA32C600F520064FFC9 /* Double.swift in Sources */,
+				77275FBC2C6155180064FFC9 /* LocalizedErrorAdapter.swift in Sources */,
 				77275F9C2C5E62EC0064FFC9 /* PlayItemFetching.swift in Sources */,
 				77275FA72C60184F0064FFC9 /* Array.swift in Sources */,
 				77275FAB2C60D3620064FFC9 /* KeyPointReaderView.swift in Sources */,
