@@ -121,14 +121,11 @@ extension BookSummarizer {
             
         case .forwardTapped:
             dataSource.moveToNextKeyPoint()
-            update(state: &state)
-            return .run { send in
-                await send(.timer(.cancelTimer))
-                await send(.player(.setupPlayer))
-            }
+            return updatePlayer(&state)
             
         case .backwardTapped:
-            return .none
+            dataSource.moveToPreviousKeyPoint()
+            return updatePlayer(&state)
             
         case .tenSecondsForwardTapped:
             return .send(.player(.moveTenSecondsForward))
@@ -194,6 +191,14 @@ extension BookSummarizer {
         case .moveFiveSecondsBackward:
             let updatedTime = state.player.currentTime - 5
             return .send(.player(.setTime(updatedTime >= 0 ? updatedTime : 0)))
+        }
+    }
+    
+    private func updatePlayer(_ state: inout State) -> Effect<Action> {
+        update(state: &state)
+        return .run { send in
+            await dataSource.setupDataSource()
+            await send(.player(.setupPlayer))
         }
     }
     
