@@ -59,7 +59,7 @@ struct KeyPointsPlayerView: View {
     
     var keyPointNumber: some View {
         // TODO: replace mock
-        Text("Key point \(store.playItem.keyPointNumber) of \(store.playItem.keyPointsCount)")
+        Text("Key point \(store.keyPoints.currentNumber) of \(store.keyPoints.count)")
             .textCase(.uppercase)
             .foregroundColor(.gray) // TODO: maybe use same colors from design
             .font(.footnote)
@@ -115,8 +115,8 @@ struct KeyPointsPlayerView: View {
                 store.send(.view(.backwardTapped))
             }
             .frame(height: Const.Controls.moveHeight)
-            .foregroundColor(store.player.isFirstKeyPoint ? .gray : .black)
-            .disabled(store.player.isFirstKeyPoint)
+            .foregroundColor(store.keyPoints.isFirstKeyPoint ? .gray : .black)
+            .disabled(store.keyPoints.isFirstKeyPoint)
             
             control(image: "gobackward.5") {
                 store.send(.view(.fiveSecondsBackwardTapped))
@@ -140,8 +140,8 @@ struct KeyPointsPlayerView: View {
                 store.send(.view(.forwardTapped))
             }
             .frame(height: Const.Controls.moveHeight)
-            .foregroundColor(store.player.isLastKeyPoint ? .gray : .black)
-            .disabled(store.player.isLastKeyPoint)
+            .foregroundColor(store.keyPoints.isLastKeyPoint ? .gray : .black)
+            .disabled(store.keyPoints.isLastKeyPoint)
         }
     }
     

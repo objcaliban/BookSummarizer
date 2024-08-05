@@ -25,21 +25,31 @@ struct BookSummarizer {
             var currentTime: Double = 0
             var duration: Double = 0
             var playRate: PlayRate = .normal
-            var isFirstKeyPoint: Bool = false
-            var isLastKeyPoint: Bool = false
         }
         
         struct PlayItemViewState {
             var coverURL: String = ""
             var keyPointTitle: String = ""
-            var keyPointNumber: Int = 0
-            var keyPointsCount: Int = 0
+        }
+        
+        struct KeyPointsState {
+            var currentNumber: Int = 0
+            var count: Int = 0
+            var isFirstKeyPoint: Bool = false
+            var isLastKeyPoint: Bool = false
+        }
+        
+        struct KeyPointReaderState {
+            var title: String = ""
+            var text: String = ""
         }
         
         var isErrorAppeared = false
         var isLoading = true
         var player = PlayerState()
         var playItem = PlayItemViewState()
+        var keyPoints = KeyPointsState()
+        var keyPointReader = KeyPointReaderState()
     }
     
     enum Action {
@@ -166,13 +176,16 @@ extension BookSummarizer {
         handleBorderKeyPoints(&state)
         state.playItem.coverURL = playItem.cover
         state.playItem.keyPointTitle = keyPoint.title
-        state.playItem.keyPointNumber = keyPoint.number
-        state.playItem.keyPointsCount = playItem.keyPoints.count
+        state.keyPoints.currentNumber = keyPoint.number
+        state.keyPoints.count = playItem.keyPoints.count
+        
+        state.keyPointReader.title = keyPoint.title
+        state.keyPointReader.text = keyPoint.text
     }
     
     private func handleBorderKeyPoints(_ state: inout State) {
-        state.player.isFirstKeyPoint = dataSource.isFirstKeyPoint
-        state.player.isLastKeyPoint = dataSource.isLastKeyPoint
+        state.keyPoints.isFirstKeyPoint = dataSource.isFirstKeyPoint
+        state.keyPoints.isLastKeyPoint = dataSource.isLastKeyPoint
     }
 }
 
