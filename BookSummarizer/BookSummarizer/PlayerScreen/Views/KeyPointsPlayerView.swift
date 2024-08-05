@@ -26,11 +26,10 @@ struct KeyPointsPlayerView: View {
                         width: geometry.size.width * Const.Cover.horizontalPartOfScreen,
                         height: (geometry.size.width * Const.Cover.horizontalPartOfScreen) * Const.Cover.sizeProporion
                     )
-                    .cornerRadius(10)
+                    .cornerRadius(Const.Cover.cornerRadius)
                     .padding(.bottom, Const.Cover.bottomPadding)
                     .padding(.top, Const.Cover.topPadding)
                 keyPointNumber
-                    .padding(.bottom, Const.KeyPointNumber.bottomPadding)
                 chapterTitle
                     .padding(.bottom, Const.ChapterTitle.bottomPadding)
                 slider
@@ -60,26 +59,28 @@ struct KeyPointsPlayerView: View {
     }
     
     var keyPointNumber: some View {
-        Text("Key point \(store.keyPoints.currentNumber) of \(store.keyPoints.count)")
+        Text(String(format: Const.KeyPointNumber.titleMask,
+                    store.keyPoints.currentNumber, store.keyPoints.count))
             .textCase(.uppercase)
-            .foregroundColor(.gray) // TODO: maybe use same colors from design
+            .foregroundColor(.gray)
             .font(.footnote)
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
     }
     
     var chapterTitle: some View {
         Text(store.playItem.keyPointTitle)
             .font(.subheadline)
+            .fontWeight(.light)
             .foregroundColor(.black)
             .multilineTextAlignment(.center)
-            .frame(height: 40)
-            .padding(.horizontal, 40)
+            .frame(height: Const.ChapterTitle.height)
+            .padding(.horizontal, Const.ChapterTitle.horisontalPadding)
     }
     
     var slider: some View {
         HStack(spacing: 0) {
             Text(store.player.currentTime.timeString)
-                .frame(width: 60)
+                .frame(width: Const.Slider.timeTitleWidth)
             Slider(
                 value: Binding(
                     get: { store.player.currentTime },
@@ -89,20 +90,21 @@ struct KeyPointsPlayerView: View {
             )
             
             Text(store.player.duration.timeString)
-                .frame(width: 60)
+                .frame(width: Const.Slider.timeTitleWidth)
         }
         .font(.footnote)
         .foregroundColor(.gray)
     }
     
     var speedLabel: some View {
-        Text("\(store.player.playRate.rawValue.formattedString)x speed")
+        Text(String(format: Const.SpeedLabel.titleMask,
+                    store.player.playRate.rawValue.formattedString))
             .font(.footnote)
             .foregroundColor(.black)
             .fontWeight(.semibold)
-            .padding(10)
+            .padding(Const.SpeedLabel.internalPadding)
             .background(
-                RoundedRectangle(cornerRadius: 7)
+                RoundedRectangle(cornerRadius: Const.SpeedLabel.cornerRadius)
                     .fill(Color.playSpeedLabel)
             )
             .onTapGesture {
@@ -111,7 +113,7 @@ struct KeyPointsPlayerView: View {
     }
     
     var playerControls: some View {
-        HStack(spacing: 30) {
+        HStack(spacing: Const.Controls.spacings) {
             control(image: "backward.end.fill", height: Const.Controls.moveHeight) {
                 store.send(.view(.backwardTapped))
             }
@@ -121,17 +123,17 @@ struct KeyPointsPlayerView: View {
             control(image: "gobackward.5", height: Const.Controls.windHeigt) {
                 store.send(.view(.fiveSecondsBackwardTapped))
             }
-            .foregroundColor(.black) // TODO: move to button style
+            .foregroundColor(.black)
             
             control(image: store.player.isPlaying ? "pause.fill" : "play.fill", height: Const.Controls.playHeight) {
                 store.send(.view(store.player.isPlaying ? .stopTapped : .startTapped))
             }
-            .foregroundColor(.black) // TODO: move to button style
+            .foregroundColor(.black)
             
             control(image: "goforward.10", height: Const.Controls.windHeigt) {
                 store.send(.view(.tenSecondsForwardTapped))
             }
-            .foregroundColor(.black) // TODO: move to button style
+            .foregroundColor(.black)
             
             control(image: "forward.end.fill", height: Const.Controls.moveHeight) {
                 store.send(.view(.forwardTapped))
@@ -162,25 +164,35 @@ extension KeyPointsPlayerView {
             static let horizontalPartOfScreen = 0.5
             static let bottomPadding: CGFloat = 40
             static let topPadding: CGFloat = 30
+            
+            static let cornerRadius: CGFloat = 10
         }
         
         enum KeyPointNumber {
-            static let bottomPadding: CGFloat = 30
+            static let bottomPadding: CGFloat = 5
+            static let titleMask = "Key point %d of %d"
         }
         
         enum ChapterTitle {
+            static let height: CGFloat = 40
             static let bottomPadding: CGFloat = 25
+            static let horisontalPadding: CGFloat = 20
         }
         
         enum Slider {
-            static let bottomPadding: CGFloat = 22
+            static let bottomPadding: CGFloat = 5
+            static let timeTitleWidth: CGFloat = 60
         }
         
         enum SpeedLabel {
             static let bottomPadding: CGFloat = 55
+            static let titleMask = "%@x speed"
+            static let internalPadding: CGFloat = 10
+            static let cornerRadius: CGFloat = 7
         }
         
         enum Controls {
+            static let spacings: CGFloat = 30
             static let playHeight: CGFloat = 30
             static let moveHeight: CGFloat = 20
             static let windHeigt: CGFloat = 30
