@@ -20,8 +20,7 @@ struct BookSummarizerView: View {
             } else {
                 KeyPointReaderView(store: store)
             }
-
-                playerSelector
+            playerSelector
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
         .onAppear {
@@ -36,7 +35,7 @@ struct BookSummarizerView: View {
     var playerSelector: some View {
         RoundedRectangle(cornerRadius: 54)
             .stroke(lineWidth: 1)
-            .foregroundColor(.gray)
+            .foregroundColor(.playerSelectorStroke)
             .overlay {
                 GeometryReader { proxy in
                     let imageWidth = proxy.size.width / 2
@@ -44,7 +43,7 @@ struct BookSummarizerView: View {
                         Color(.white)
                             .cornerRadius(54)
                         Circle()
-                            .fill(.blue)
+                            .fill(.primaryBlue)
                             .padding(4)
                         HStack(spacing: 0) {
                             Image(systemName: "text.alignleft")

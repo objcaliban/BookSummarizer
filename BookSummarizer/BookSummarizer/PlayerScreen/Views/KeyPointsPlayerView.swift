@@ -14,6 +14,7 @@ struct KeyPointsPlayerView: View {
     init(store: StoreOf<BookSummarizer>) {
         self.store = store
         let thumbImage = UIImage(systemName: "circle.fill")
+        UISlider.appearance().tintColor = UIColor.primaryBlue
         UISlider.appearance().setThumbImage(thumbImage, for: .normal)
     }
     
@@ -118,7 +119,7 @@ struct KeyPointsPlayerView: View {
                 store.send(.view(.backwardTapped))
             }
             .frame(height: Const.Controls.moveHeight)
-            .foregroundColor(store.keyPoints.isFirstKeyPoint ? .gray : .black)
+            .foregroundColor(store.keyPoints.isFirstKeyPoint ? .disabledControl : .black)
             .disabled(store.keyPoints.isFirstKeyPoint)
             
             control(image: "gobackward.5") {
@@ -143,7 +144,7 @@ struct KeyPointsPlayerView: View {
                 store.send(.view(.forwardTapped))
             }
             .frame(height: Const.Controls.moveHeight)
-            .foregroundColor(store.keyPoints.isLastKeyPoint ? .gray : .black)
+            .foregroundColor(store.keyPoints.isLastKeyPoint ? .disabledControl : .black)
             .disabled(store.keyPoints.isLastKeyPoint)
         }
     }
