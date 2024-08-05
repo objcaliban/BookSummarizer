@@ -24,18 +24,19 @@ struct DirectionButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action, label: {
-            Image(systemName: direction.systemImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
-                .frame(width: height, height: height)
-                .background {
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(.gray)
-                        .opacity(0.1)
-                        .scaleEffect(3)
-                }
-        })
+        Image(systemName: direction.systemImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(.black)
+            .frame(width: height, height: height)
+            .background {
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(.gray)
+                    .opacity(0.1)
+                    .scaleEffect(3)
+            }
+            .onTapGesture {
+                action()
+            }
     }
 }

@@ -18,12 +18,12 @@ struct KeyPointReaderView: View {
     var body: some View {
         ScrollView {
             title
-                .padding(15)
+                .padding(Const.titlePadding)
             text
-                .padding(.horizontal, 15)
+                .padding(.horizontal, Const.textPadding)
             bottomControls
-                .padding(.top, 40)
-                .padding(.bottom, 80)
+                .padding(.top, Const.Controls.topPadding)
+                .padding(.bottom, Const.Controls.bottomPadding)
             
         }
     }
@@ -45,18 +45,38 @@ struct KeyPointReaderView: View {
     }
     
     private var bottomControls: some View {
-        HStack(spacing: 35) {
-            DirectionButton(direction: .backward, height: 15) {
+        HStack(spacing: Const.Controls.internalSpacing) {
+            DirectionButton(direction: .backward, height: Const.Controls.height) {
                 store.send(.view(.backwardTapped))
             }.opacity(store.keyPoints.isFirstKeyPoint ? 0 : 1)
             
-            Text("\(store.keyPoints.currentNumber) of \(store.keyPoints.count)")
+            Text(String(format: Const.Controls.titleMask,
+                        store.keyPoints.currentNumber, store.keyPoints.count))
                 .font(.callout)
                 .foregroundColor(.black)
             
-            DirectionButton(direction: .forward, height: 15) {
+            DirectionButton(direction: .forward, height: Const.Controls.height) {
                 store.send(.view(.forwardTapped))
-            }.opacity(store.keyPoints.isLastKeyPoint ? 0 : 1)
+            }.opacity(store.keyPoints.isLastKeyPoint ? Const.Controls.hidden : Const.Controls.visible)
+        }
+    }
+}
+
+extension KeyPointReaderView {
+    enum Const {
+        static let titlePadding: CGFloat = 15
+        static let textPadding: CGFloat = 15
+        
+        enum Controls {
+            static let internalSpacing: CGFloat = 35
+            static let topPadding: CGFloat = 40
+            static let bottomPadding: CGFloat = 80
+            static let height: CGFloat = 15
+            
+            static let hidden: CGFloat = 0
+            static let visible: CGFloat = 1
+            
+            static let titleMask = "%d of %d"
         }
     }
 }
@@ -68,4 +88,3 @@ struct KeyPointReaderView: View {
         }
     )
 }
-
