@@ -44,7 +44,6 @@ struct BookSummarizer {
             var text: String = ""
         }
         
-        var isErrorAppeared = false
         var error: SummarizerError?
         var isLoading = true
         var player = PlayerState()
@@ -174,7 +173,6 @@ extension BookSummarizer {
         guard let playItem = dataSource.currentPlayItem,
               let keyPoint = dataSource.currentKeyPoint else {
             state.isLoading = false
-            state.isErrorAppeared = true
             state.error = LocalizedErrorAdapter.shared.adapt(error: dataSource.accuredError)
             return
         }
@@ -276,7 +274,6 @@ extension BookSummarizer {
             let url = URL(string: dataSource.currentKeyPoint?.audioURL ?? "")
             try player.setup(with: url)
         } catch {
-            state.isErrorAppeared = true
             state.error = LocalizedErrorAdapter.shared.adapt(error: error)
         }
     }
