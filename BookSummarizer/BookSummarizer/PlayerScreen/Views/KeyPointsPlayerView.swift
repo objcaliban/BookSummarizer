@@ -13,48 +13,51 @@ struct KeyPointsPlayerView: View {
     
     init(store: StoreOf<BookSummarizer>) {
         self.store = store
-        
-        // TODO: maybe change color
         let thumbImage = UIImage(systemName: "circle.fill")
         UISlider.appearance().setThumbImage(thumbImage, for: .normal)
     }
     
     var body: some View {
-        VStack {
-            cover
-                .padding(.bottom, Const.Cover.bottomPadding)
-                .padding(.top, Const.Cover.topPadding)
-            keyPointNumber
-                .padding(.bottom, Const.KeyPointNumber.bottomPadding)
-            chapterTitle
-                .padding(.bottom, Const.ChapterTitle.bottomPadding)
-            slider
-                .padding(.bottom, Const.Slider.bottomPadding)
-            speedLabel
-                .padding(.bottom, Const.SpeedLabel.bottomPadding)
-            playerControls
-            Spacer()
+        GeometryReader { geometry in
+            VStack {
+                cover
+                    .frame(
+                        width: geometry.size.width * Const.Cover.horizontalPartOfScreen,
+                        height: (geometry.size.width * Const.Cover.horizontalPartOfScreen) * Const.Cover.sizeProporion
+                    )
+                    .cornerRadius(10)
+                    .padding(.bottom, Const.Cover.bottomPadding)
+                    .padding(.top, Const.Cover.topPadding)
+                keyPointNumber
+                    .padding(.bottom, Const.KeyPointNumber.bottomPadding)
+                chapterTitle
+                    .padding(.bottom, Const.ChapterTitle.bottomPadding)
+                slider
+                    .padding(.bottom, Const.Slider.bottomPadding)
+                speedLabel
+                    .padding(.bottom, Const.SpeedLabel.bottomPadding)
+                playerControls
+                Spacer()
+            }
         }
     }
     
     var cover: some View {
-        AsyncImage(url: URL(string: store.playItem.coverURL)) { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .scaledToFit()
-            } else if phase.error != nil {
-                // TODO: add skeleton
-                Text("There was an error loading the image.")
-            } else {
-                // TODO: add skeleton
-                ProgressView()
+        ZStack {
+            SkeletonView { Rectangle() }
+            AsyncImage(url: URL(string: store.playItem.coverURL)) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } else if phase.error != nil {
+                    // TODO: add skeleton
+                    
+                    Text("There was an error loading the image.")
+                    
+                }
             }
         }
-        .containerRelativeFrame(.horizontal) { size, axis in
-            size * Const.Cover.horizontalPartOfScreen
-        }
-        .aspectRatio(Const.Cover.sizeProporion, contentMode: .fill)
     }
     
     var keyPointNumber: some View {
@@ -95,14 +98,14 @@ struct KeyPointsPlayerView: View {
     }
     
     var speedLabel: some View {
-        Text("Speed x\(store.player.playRate.rawValue.formattedString)")
+        Text("\(store.player.playRate.rawValue.formattedString)x speed")
             .font(.footnote)
             .foregroundColor(.black)
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
             .padding(10)
             .background(
                 RoundedRectangle(cornerRadius: 7)
-                    .fill(Color(UIColor.systemGray5)) // TODO: use design color
+                    .fill(Color.playSpeedLabel)
             )
             .onTapGesture {
                 store.send(.view(.speedLabelTapped))

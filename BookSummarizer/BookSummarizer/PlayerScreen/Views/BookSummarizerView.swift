@@ -14,19 +14,23 @@ struct BookSummarizerView: View {
     
     var body: some View {
         ZStack {
+            background.ignoresSafeArea()
             if showPlayer {
                 KeyPointsPlayerView(store: store)
             } else {
                 KeyPointReaderView(store: store)
             }
-            VStack {
-                Spacer()
+
                 playerSelector
-            }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
         .onAppear {
             store.send(.view(.setupInitiated))
         }
+    }
+    
+    private var background: some View {
+        Color.playerBackground
     }
     
     var playerSelector: some View {
