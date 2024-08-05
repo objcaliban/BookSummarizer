@@ -35,30 +35,30 @@ struct BookSummarizerView: View {
     }
     
     var playerSelector: some View {
-        RoundedRectangle(cornerRadius: 54)
-            .stroke(lineWidth: 1)
+        RoundedRectangle(cornerRadius: Const.Selector.cornerRadius)
+            .stroke(lineWidth: Const.Selector.stroke)
             .foregroundColor(.playerSelectorStroke)
             .overlay {
                 GeometryReader { proxy in
-                    let imageWidth = proxy.size.width / 2
+                    let imageWidth = proxy.size.width * Const.Selector.imageProportion
                     ZStack(alignment: showPlayer ? .trailing : .leading) {
                         Color(.white)
-                            .cornerRadius(54)
+                            .cornerRadius(Const.Selector.cornerRadius)
                         Circle()
                             .fill(.primaryBlue)
-                            .padding(4)
+                            .padding(Const.Selector.selectedElementPadding)
                         HStack(spacing: 0) {
                             Image(systemName: "text.alignleft")
                                 .resizable()
                                 .scaledToFit()
-                                .padding(19)
+                                .padding(Const.Selector.iconPadding)
                                 .frame(width: imageWidth)
                                 .foregroundColor(showPlayer ? .black : .white)
                             
                             Image(systemName: "headphones")
                                 .resizable()
                                 .scaledToFit()
-                                .padding(19)
+                                .padding(Const.Selector.iconPadding)
                                 .frame(width: imageWidth)
                                 .foregroundColor(showPlayer ? .white : .black)
                         }
@@ -66,12 +66,27 @@ struct BookSummarizerView: View {
                     }
                 }
             }
-            .frame(width: 106, height: 54)
+            .frame(width: Const.Selector.width, height: Const.Selector.height)
             .onTapGesture {
-                withAnimation(.linear(duration: 0.2)) {
+                withAnimation(.linear(duration: Const.Selector.animationDuration)) {
                     showPlayer.toggle()
                 }
             }
+    }
+    
+    enum Const {
+        enum Selector {
+            static let cornerRadius: CGFloat = 54
+            static let stroke: CGFloat = 1
+            static let selectedElementPadding: CGFloat = 4
+            static let iconPadding: CGFloat = 18
+            static let imageProportion: CGFloat = 0.5
+            
+            static let height: CGFloat = 54
+            static let width: CGFloat = 106
+            
+            static let animationDuration: CGFloat = 0.2
+        }
     }
 }
 
