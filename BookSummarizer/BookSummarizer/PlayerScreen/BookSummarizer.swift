@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Foundation
+//import Combine
 
 /// possible refactoring notes:
 /// - cosider adding subreducers
@@ -71,12 +72,15 @@ struct BookSummarizer {
         
         enum PlayerAction {
             case setupPlayer
+            case play
             case setTime(_ time: Double)
             case moveTenSecondsForward
             case moveFiveSecondsBackward
             case moveForward
             case moveBackward
             case changePlayRate
+            case handlePlayingFinish
+            case updateDuration
         }
         
         enum TimerAction {
@@ -121,11 +125,8 @@ extension BookSummarizer {
             }
         case .startTapped:
             //            set player.playRate
-            player.play()
-            state.player.duration = player.duration
-            state.player.isPlaying = true
             return .run { send in
-                await send(.timer(.setupTimer))
+                await send(.player(.play))
             }
         case .stopTapped:
             stopPlayer(&state)
@@ -198,6 +199,14 @@ extension BookSummarizer {
             return .run { send in
                 await send(.dataSource(.updateState))
             }
+            
+        case .play:
+            player.play()
+            state.player.duration = player.duration
+            state.player.isPlaying = true
+            return .run { send in
+                await send(.timer(.setupTimer))
+            }
         case .setTime(let time):
             setPlayerTime(&state, time: time)
             return .none
@@ -221,6 +230,15 @@ extension BookSummarizer {
         case .changePlayRate:
             state.player.playRate = state.player.playRate.next()
             player.playRate = state.player.playRate.rawValue
+            return .none
+            
+        case .handlePlayingFinish:
+            stopPlayer(&state)
+            return .run { send in
+                await send(.player(.moveForward))
+            }
+        case .updateDuration:
+            state.player.duration = player.duration
             return .none
         }
     }
