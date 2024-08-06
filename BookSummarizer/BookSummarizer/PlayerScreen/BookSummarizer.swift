@@ -162,6 +162,7 @@ extension BookSummarizer {
         case .setupDataSource:
             return .run { send in
                 await dataSource.setupDataSource()
+                await send(.dataSource(.updateState))
                 await send(.player(.setupPlayer))
             }
         case .updateState:
@@ -200,9 +201,7 @@ extension BookSummarizer {
         switch action {
         case .setupPlayer:
             setupPlayer(&state)
-            return .run { send in
-                await send(.dataSource(.updateState))
-            }
+            return .none
             
         case .play:
             player.play()

@@ -16,11 +16,11 @@ enum SummarizerError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .undefinedError:
-            return "Something went wrong"
+            return String(localized: "UndefinedError")
         case .invalidUrl:
-            return "Invalid URL"
+            return String(localized: "InvalidUrl")
         case .dataCorrupted:
-            return "Data Corrupted"
+            return String(localized: "DataCorrupted")
         }
     }
 }
