@@ -8,8 +8,7 @@
 import AVFoundation
 import Combine
 
-class AudioPlayer: Player {
-    
+class AudioPlayer {
     var isPlaying: Bool {
         return player?.timeControlStatus == .playing
     }
@@ -25,6 +24,7 @@ class AudioPlayer: Player {
     }
     
     var duration: Double {
+        /// added safe value access. it is necessary that there are no problems with the slider when the player is still loading meta data
         if let seconds = player?.currentItem?.duration.seconds,
            seconds >= 0 {
             return seconds

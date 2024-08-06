@@ -8,16 +8,15 @@
 import ComposableArchitecture
 import Foundation
 
-/// possible refactoring notes:
-/// - cosider adding subreducers
-///  - chech notes about possibe rename
-///   -
 @Reducer
 struct BookSummarizer {
     @Dependency(\.continuousClock) var clock
     @Dependency(\.summarizerDataSource) var dataSource
     @Dependency(\.player) var player
     
+    /// I see a possible (and desirable) division of reducers into sub-reducers
+    /// I consider the division according to the implemented relative "division" into substates and substates
+    /// one reducer was made to save time
     @ObservableState
     struct State {
         struct PlayerState {
@@ -115,6 +114,7 @@ struct BookSummarizer {
 }
 
 // MARK: UI actions
+/// a hypothetical separate reducer
 extension BookSummarizer {
     // TODO: maybe add subreducers
     private func handleView(action: Action.ViewAction, with state: inout State) -> Effect<Action> {
@@ -155,6 +155,7 @@ extension BookSummarizer {
 }
 
 // MARK: DataSource methods
+/// a hypothetical separate reducer
 extension BookSummarizer {
     private func handleDataSource(action: Action.DataSourceAction, with state: inout State) -> Effect<Action> {
         switch action {
@@ -193,6 +194,7 @@ extension BookSummarizer {
 }
 
 // MARK: Player methods
+/// a hypothetical separate reducer
 extension BookSummarizer {
     private func handlePlayer(action: Action.PlayerAction, with state: inout State) -> Effect<Action> {
         switch action {
@@ -282,6 +284,7 @@ extension BookSummarizer {
 }
 
 // MARK: Timer methods
+/// a hypothetical separate reducer
 extension BookSummarizer {
     private func handleTimer(action: Action.TimerAction, with state: inout State) -> Effect<Action> {
         switch action {
