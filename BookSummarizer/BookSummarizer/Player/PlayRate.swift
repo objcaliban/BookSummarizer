@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlayRate: Float, CaseIterable {
+enum PlayRate: Float, CaseIterable, Equatable {
     case half = 0.5
     case threeQuarters = 0.75
     case normal = 1

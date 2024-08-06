@@ -18,27 +18,27 @@ struct BookSummarizer {
     /// I consider the division according to the implemented relative "division" into substates and substates
     /// one reducer was made to save time
     @ObservableState
-    struct State {
-        struct PlayerState {
+    struct State: Equatable {
+        struct PlayerState: Equatable {
             var isPlaying: Bool = false
             var currentTime: Double = 0
             var duration: Double = 0
             var playRate: PlayRate = .normal
         }
         
-        struct PlayItemViewState {
+        struct PlayItemViewState: Equatable {
             var coverURL: String = ""
             var keyPointTitle: String = ""
         }
         
-        struct KeyPointsState {
+        struct KeyPointsState: Equatable {
             var currentNumber: Int = 0
             var count: Int = 0
             var isFirstKeyPoint: Bool = false
             var isLastKeyPoint: Bool = false
         }
         
-        struct KeyPointReaderState {
+        struct KeyPointReaderState: Equatable {
             var title: String = ""
             var text: String = ""
         }

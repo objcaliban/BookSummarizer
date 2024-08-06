@@ -10,9 +10,6 @@
 		7723C0FE2C5BCE0E009A6709 /* BookSummarizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */; };
 		7723C1022C5BCE0F009A6709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723C1012C5BCE0F009A6709 /* Assets.xcassets */; };
 		7723C1052C5BCE0F009A6709 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7723C1042C5BCE0F009A6709 /* Preview Assets.xcassets */; };
-		7723C10F2C5BCE0F009A6709 /* BookSummarizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C10E2C5BCE0F009A6709 /* BookSummarizerTests.swift */; };
-		7723C1192C5BCE0F009A6709 /* BookSummarizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C1182C5BCE0F009A6709 /* BookSummarizerUITests.swift */; };
-		7723C11B2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C11A2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift */; };
 		7723C12B2C5C078B009A6709 /* BookSummarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723C12A2C5C078B009A6709 /* BookSummarizer.swift */; };
 		77275F9A2C5E61D40064FFC9 /* PlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275F992C5E61D40064FFC9 /* PlayItem.swift */; };
 		77275F9C2C5E62EC0064FFC9 /* PlayItemFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275F9B2C5E62EC0064FFC9 /* PlayItemFetching.swift */; };
@@ -41,33 +38,11 @@
 		77FB0F952C5E50620052F9BF /* KeyPointsPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F942C5E50620052F9BF /* KeyPointsPlayerView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7723C10B2C5BCE0F009A6709 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7723C0F22C5BCE0E009A6709 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7723C0F92C5BCE0E009A6709;
-			remoteInfo = BookSummarizer;
-		};
-		7723C1152C5BCE0F009A6709 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7723C0F22C5BCE0E009A6709 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7723C0F92C5BCE0E009A6709;
-			remoteInfo = BookSummarizer;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		7723C0FA2C5BCE0E009A6709 /* BookSummarizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSummarizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerApp.swift; sourceTree = "<group>"; };
 		7723C1012C5BCE0F009A6709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7723C1042C5BCE0F009A6709 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7723C10A2C5BCE0F009A6709 /* BookSummarizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookSummarizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7723C10E2C5BCE0F009A6709 /* BookSummarizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerTests.swift; sourceTree = "<group>"; };
-		7723C1142C5BCE0F009A6709 /* BookSummarizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookSummarizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7723C1182C5BCE0F009A6709 /* BookSummarizerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerUITests.swift; sourceTree = "<group>"; };
-		7723C11A2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7723C12A2C5C078B009A6709 /* BookSummarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizer.swift; sourceTree = "<group>"; };
 		77275F992C5E61D40064FFC9 /* PlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayItem.swift; sourceTree = "<group>"; };
 		77275F9B2C5E62EC0064FFC9 /* PlayItemFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayItemFetching.swift; sourceTree = "<group>"; };
@@ -104,20 +79,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7723C1072C5BCE0F009A6709 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723C1112C5BCE0F009A6709 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -125,8 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				7723C0FC2C5BCE0E009A6709 /* BookSummarizer */,
-				7723C10D2C5BCE0F009A6709 /* BookSummarizerTests */,
-				7723C1172C5BCE0F009A6709 /* BookSummarizerUITests */,
 				7723C0FB2C5BCE0E009A6709 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,8 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				7723C0FA2C5BCE0E009A6709 /* BookSummarizer.app */,
-				7723C10A2C5BCE0F009A6709 /* BookSummarizerTests.xctest */,
-				7723C1142C5BCE0F009A6709 /* BookSummarizerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,23 +121,6 @@
 				7723C1042C5BCE0F009A6709 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		7723C10D2C5BCE0F009A6709 /* BookSummarizerTests */ = {
-			isa = PBXGroup;
-			children = (
-				7723C10E2C5BCE0F009A6709 /* BookSummarizerTests.swift */,
-			);
-			path = BookSummarizerTests;
-			sourceTree = "<group>";
-		};
-		7723C1172C5BCE0F009A6709 /* BookSummarizerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7723C1182C5BCE0F009A6709 /* BookSummarizerUITests.swift */,
-				7723C11A2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift */,
-			);
-			path = BookSummarizerUITests;
 			sourceTree = "<group>";
 		};
 		77275F972C5E61AC0064FFC9 /* Networking(Mock) */ = {
@@ -312,42 +252,6 @@
 			productReference = 7723C0FA2C5BCE0E009A6709 /* BookSummarizer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7723C1092C5BCE0F009A6709 /* BookSummarizerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7723C1212C5BCE0F009A6709 /* Build configuration list for PBXNativeTarget "BookSummarizerTests" */;
-			buildPhases = (
-				7723C1062C5BCE0F009A6709 /* Sources */,
-				7723C1072C5BCE0F009A6709 /* Frameworks */,
-				7723C1082C5BCE0F009A6709 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7723C10C2C5BCE0F009A6709 /* PBXTargetDependency */,
-			);
-			name = BookSummarizerTests;
-			productName = BookSummarizerTests;
-			productReference = 7723C10A2C5BCE0F009A6709 /* BookSummarizerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		7723C1132C5BCE0F009A6709 /* BookSummarizerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7723C1242C5BCE0F009A6709 /* Build configuration list for PBXNativeTarget "BookSummarizerUITests" */;
-			buildPhases = (
-				7723C1102C5BCE0F009A6709 /* Sources */,
-				7723C1112C5BCE0F009A6709 /* Frameworks */,
-				7723C1122C5BCE0F009A6709 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7723C1162C5BCE0F009A6709 /* PBXTargetDependency */,
-			);
-			name = BookSummarizerUITests;
-			productName = BookSummarizerUITests;
-			productReference = 7723C1142C5BCE0F009A6709 /* BookSummarizerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -360,14 +264,6 @@
 				TargetAttributes = {
 					7723C0F92C5BCE0E009A6709 = {
 						CreatedOnToolsVersion = 15.4;
-					};
-					7723C1092C5BCE0F009A6709 = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 7723C0F92C5BCE0E009A6709;
-					};
-					7723C1132C5BCE0F009A6709 = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 7723C0F92C5BCE0E009A6709;
 					};
 				};
 			};
@@ -388,8 +284,6 @@
 			projectRoot = "";
 			targets = (
 				7723C0F92C5BCE0E009A6709 /* BookSummarizer */,
-				7723C1092C5BCE0F009A6709 /* BookSummarizerTests */,
-				7723C1132C5BCE0F009A6709 /* BookSummarizerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -403,20 +297,6 @@
 				7723C1052C5BCE0F009A6709 /* Preview Assets.xcassets in Resources */,
 				77275FC32C6229050064FFC9 /* Localizable.xcstrings in Resources */,
 				7723C1022C5BCE0F009A6709 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723C1082C5BCE0F009A6709 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723C1122C5BCE0F009A6709 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,37 +334,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7723C1062C5BCE0F009A6709 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7723C10F2C5BCE0F009A6709 /* BookSummarizerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7723C1102C5BCE0F009A6709 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7723C11B2C5BCE0F009A6709 /* BookSummarizerUITestsLaunchTests.swift in Sources */,
-				7723C1192C5BCE0F009A6709 /* BookSummarizerUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7723C10C2C5BCE0F009A6709 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7723C0F92C5BCE0E009A6709 /* BookSummarizer */;
-			targetProxy = 7723C10B2C5BCE0F009A6709 /* PBXContainerItemProxy */;
-		};
-		7723C1162C5BCE0F009A6709 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7723C0F92C5BCE0E009A6709 /* BookSummarizer */;
-			targetProxy = 7723C1152C5BCE0F009A6709 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7723C11C2C5BCE0F009A6709 /* Debug */ = {
@@ -630,9 +480,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.caliban.BookSummarizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -660,85 +514,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.caliban.BookSummarizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		7723C1222C5BCE0F009A6709 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QS33T3WN6K;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.caliban.BookSummarizerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookSummarizer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BookSummarizer";
-			};
-			name = Debug;
-		};
-		7723C1232C5BCE0F009A6709 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QS33T3WN6K;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.caliban.BookSummarizerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookSummarizer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BookSummarizer";
-			};
-			name = Release;
-		};
-		7723C1252C5BCE0F009A6709 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QS33T3WN6K;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.caliban.BookSummarizerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BookSummarizer;
-			};
-			name = Debug;
-		};
-		7723C1262C5BCE0F009A6709 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QS33T3WN6K;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.caliban.BookSummarizerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BookSummarizer;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -759,24 +541,6 @@
 			buildConfigurations = (
 				7723C11F2C5BCE0F009A6709 /* Debug */,
 				7723C1202C5BCE0F009A6709 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7723C1212C5BCE0F009A6709 /* Build configuration list for PBXNativeTarget "BookSummarizerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7723C1222C5BCE0F009A6709 /* Debug */,
-				7723C1232C5BCE0F009A6709 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7723C1242C5BCE0F009A6709 /* Build configuration list for PBXNativeTarget "BookSummarizerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7723C1252C5BCE0F009A6709 /* Debug */,
-				7723C1262C5BCE0F009A6709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
