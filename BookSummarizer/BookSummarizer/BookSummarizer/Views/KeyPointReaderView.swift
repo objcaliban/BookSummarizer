@@ -130,7 +130,7 @@ extension KeyPointReaderView {
             static let hidden: CGFloat = 0
             static let visible: CGFloat = 1
             
-            static let titleMask = "%d of %d"
+            static let titleMask = String(localized: "CurrentKeyPointOfTotalShort")
         }
     }
 }

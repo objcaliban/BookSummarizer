@@ -31,6 +31,8 @@
 		77275FBE2C6160E60064FFC9 /* PlayerControlButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FBD2C6160E60064FFC9 /* PlayerControlButtonStyle.swift */; };
 		77275FC12C6178190064FFC9 /* ScrollViewOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FC02C6178190064FFC9 /* ScrollViewOffsetKey.swift */; };
 		77275FC32C6229050064FFC9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 77275FC22C6229050064FFC9 /* Localizable.xcstrings */; };
+		77275FC52C622DAC0064FFC9 /* ScrollViewContentHeightKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FC42C622DAC0064FFC9 /* ScrollViewContentHeightKey.swift */; };
+		77275FC72C622DC20064FFC9 /* ScreenHeightKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77275FC62C622DC20064FFC9 /* ScreenHeightKey.swift */; };
 		77FB0F652C5C0A940052F9BF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77FB0F642C5C0A940052F9BF /* Colors.xcassets */; };
 		77FB0F782C5C18400052F9BF /* BookSummarizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */; };
 		77FB0F7D2C5C1D130052F9BF /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB0F7C2C5C1D130052F9BF /* AudioPlayer.swift */; };
@@ -83,6 +85,8 @@
 		77275FBD2C6160E60064FFC9 /* PlayerControlButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlButtonStyle.swift; sourceTree = "<group>"; };
 		77275FC02C6178190064FFC9 /* ScrollViewOffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewOffsetKey.swift; sourceTree = "<group>"; };
 		77275FC22C6229050064FFC9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		77275FC42C622DAC0064FFC9 /* ScrollViewContentHeightKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewContentHeightKey.swift; sourceTree = "<group>"; };
+		77275FC62C622DC20064FFC9 /* ScreenHeightKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeightKey.swift; sourceTree = "<group>"; };
 		77FB0F642C5C0A940052F9BF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		77FB0F772C5C18400052F9BF /* BookSummarizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSummarizerView.swift; sourceTree = "<group>"; };
 		77FB0F7C2C5C1D130052F9BF /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -140,13 +144,13 @@
 		7723C0FC2C5BCE0E009A6709 /* BookSummarizer */ = {
 			isa = PBXGroup;
 			children = (
-				77275FBA2C6154EE0064FFC9 /* ErrorHandling */,
 				7723C0FD2C5BCE0E009A6709 /* BookSummarizerApp.swift */,
-				77275F972C5E61AC0064FFC9 /* Networking(Mock) */,
+				77275FAE2C6124ED0064FFC9 /* CommonViews */,
+				77FB0F762C5C17BF0052F9BF /* BookSummarizer */,
 				77FB0F7E2C5C1ECC0052F9BF /* DataSource */,
 				77FB0F792C5C1A560052F9BF /* Player */,
-				77FB0F762C5C17BF0052F9BF /* PlayerScreen */,
-				77275FAE2C6124ED0064FFC9 /* CommonViews */,
+				77275FBA2C6154EE0064FFC9 /* ErrorHandling */,
+				77275F972C5E61AC0064FFC9 /* Networking(Mock) */,
 				77275FA12C5E6FD70064FFC9 /* Extensions */,
 				77FB0F622C5C0A2F0052F9BF /* Resources */,
 				7723C1032C5BCE0F009A6709 /* Preview Content */,
@@ -231,6 +235,8 @@
 		77275FBF2C6178090064FFC9 /* PreferenceKey */ = {
 			isa = PBXGroup;
 			children = (
+				77275FC62C622DC20064FFC9 /* ScreenHeightKey.swift */,
+				77275FC42C622DAC0064FFC9 /* ScrollViewContentHeightKey.swift */,
 				77275FC02C6178190064FFC9 /* ScrollViewOffsetKey.swift */,
 			);
 			path = PreferenceKey;
@@ -246,13 +252,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		77FB0F762C5C17BF0052F9BF /* PlayerScreen */ = {
+		77FB0F762C5C17BF0052F9BF /* BookSummarizer */ = {
 			isa = PBXGroup;
 			children = (
 				7723C12A2C5C078B009A6709 /* BookSummarizer.swift */,
 				77FB0F932C5E503A0052F9BF /* Views */,
 			);
-			path = PlayerScreen;
+			path = BookSummarizer;
 			sourceTree = "<group>";
 		};
 		77FB0F792C5C1A560052F9BF /* Player */ = {
@@ -431,6 +437,7 @@
 				77275FBE2C6160E60064FFC9 /* PlayerControlButtonStyle.swift in Sources */,
 				77275FBC2C6155180064FFC9 /* LocalizedErrorAdapter.swift in Sources */,
 				77275F9C2C5E62EC0064FFC9 /* PlayItemFetching.swift in Sources */,
+				77275FC72C622DC20064FFC9 /* ScreenHeightKey.swift in Sources */,
 				77275FA72C60184F0064FFC9 /* Array.swift in Sources */,
 				77275FAB2C60D3620064FFC9 /* KeyPointReaderView.swift in Sources */,
 				77FB0F7D2C5C1D130052F9BF /* AudioPlayer.swift in Sources */,
@@ -443,6 +450,7 @@
 				77275FAD2C60E3C60064FFC9 /* DirectionButton.swift in Sources */,
 				77275FA52C600F690064FFC9 /* PlayRate.swift in Sources */,
 				77FB0F872C5C21EA0052F9BF /* SummarizerDataSource.swift in Sources */,
+				77275FC52C622DAC0064FFC9 /* ScrollViewContentHeightKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

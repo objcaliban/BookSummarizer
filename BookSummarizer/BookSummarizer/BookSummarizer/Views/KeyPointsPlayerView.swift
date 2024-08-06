@@ -170,7 +170,7 @@ extension KeyPointsPlayerView {
         
         enum KeyPointNumber {
             static let bottomPadding: CGFloat = 5
-            static let titleMask = "Key point %d of %d"
+            static let titleMask = String(localized: "CurrentKeyPointOfTotal")
         }
         
         enum ChapterTitle {
@@ -186,7 +186,7 @@ extension KeyPointsPlayerView {
         
         enum SpeedLabel {
             static let bottomPadding: CGFloat = 55
-            static let titleMask = "%@x speed"
+            static let titleMask = String(localized: "PlaySpeed")
             static let internalPadding: CGFloat = 10
             static let cornerRadius: CGFloat = 7
         }

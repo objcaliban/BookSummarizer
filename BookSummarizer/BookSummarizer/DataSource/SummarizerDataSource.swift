@@ -8,7 +8,6 @@
 import ComposableArchitecture
 import Foundation
 
-// TODO: maybe rename :)
 protocol SummarizerDataSourceInterface {
     var currentPlayItem: PlayItem? { get }
     var currentKeyPoint: KeyPoint? { get }
@@ -47,7 +46,8 @@ class SummarizerDataSource: SummarizerDataSourceInterface {
             /// for example, I made a request and received a book
             let playItem = try await self.playItemFetcher.fetchPlayItem()
             self.currentPlayItem = playItem
-            // TODO: handle current key point
+            /// Here I would add logic to remember last key point
+            /// so user could start playing from last remembered key point
         } catch {
             accuredError = error
         }

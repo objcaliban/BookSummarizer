@@ -11,7 +11,7 @@ import ComposableArchitecture
 @main
 struct BookSummarizerApp: App {
     static let store = Store(initialState: BookSummarizer.State()) {
-        BookSummarizer()._printChanges()
+        BookSummarizer()
     }
     
     var body: some Scene {

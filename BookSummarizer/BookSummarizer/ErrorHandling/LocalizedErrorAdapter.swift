@@ -14,10 +14,10 @@ struct LocalizedErrorAdapter {
     private init() {}
     
     func adapt(error: Error?) -> SummarizerError {
-        guard error is SummarizerError else {
+        guard let error = error as? SummarizerError else {
             return SummarizerError.undefinedError
         }
-        return SummarizerError.undefinedError
+        return error
     }
 }
 

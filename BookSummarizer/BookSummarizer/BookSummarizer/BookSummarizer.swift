@@ -116,17 +116,18 @@ struct BookSummarizer {
 // MARK: UI actions
 /// a hypothetical separate reducer
 extension BookSummarizer {
-    // TODO: maybe add subreducers
     private func handleView(action: Action.ViewAction, with state: inout State) -> Effect<Action> {
         switch action {
         case .setupInitiated:
             return .run { send in
                 await send(.dataSource(.setupDataSource))
             }
+            
         case .startTapped:
             return .run { send in
                 await send(.player(.play))
             }
+            
         case .stopTapped:
             stopPlayer(&state)
             return .run { send in
@@ -299,9 +300,8 @@ extension BookSummarizer {
     
     private func setupTimer(_ state: inout State) -> Effect<Action> {
         guard state.player.isPlaying else { return .none }
-        let millisecondsInterval = Int(1000.0 / 1)
         return .run { send in
-            for await _ in self.clock.timer(interval: .milliseconds(millisecondsInterval)) {
+            for await _ in self.clock.timer(interval: .milliseconds(1000.0)) {
                 await send(.timer(.timerTicked))
             }
         }.cancellable(id: CancelID.timer)
